@@ -1,11 +1,13 @@
-import React from 'react';
+import Banner from "@/components/ui/Home/Banner";
 
-const HomePage = () => {
-    return (
-        <div>
-            home
-        </div>
-    );
-};
 
-export default HomePage;
+export default async function HomePage() {
+
+
+  return (
+    <div className="pt-30">
+<div> <Banner/> </div>
+
+      </div>
+  );
+}
