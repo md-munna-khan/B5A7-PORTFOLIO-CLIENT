@@ -1,10 +1,8 @@
-
 "use client";
-
 
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
-import { Facebook, Github, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Github, Linkedin, Phone, Twitter } from "lucide-react";
 import Image from "next/image";
 
 const Banner = () => {
@@ -12,15 +10,15 @@ const Banner = () => {
     <div className="grid items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 overflow-hidden gap-8 px-4 ">
       {/* Left Section */}
       <div className="col-span-4 md:col-span-2 w-full lg:space-y-12 space-y-6 mt-20 text-center md:text-left">
-        <h1 className="text-2xl md:text-4xl"> Hello I'm Munna</h1>
+        <h1 className="text-2xl md:text-4xl"> HELLO I'M MUNNA</h1>
 
         <div className="text-green-500">
           <TypeAnimation
             className="text-2xl md:text-4xl font-bold"
             sequence={[
-              "A Frontend Web Developer",
+              "A FULL STACK WEB DEVELOPER ",
               1000,
-              "A MERN Stack Developer",
+              "Frontend & Backend Enthusiast",
               1000,
             ]}
             wrapper="span"
@@ -30,7 +28,7 @@ const Banner = () => {
         </div>
 
         {/* Social Media Icons */}
-        <div className="flex justify-center md:justify-start gap-4 text-2xl md:text-4xl">
+        <div className="flex justify-center md:justify-start gap-4 text-2xl md:text-4xl p-4 rounded-4xl  border-2 w-max ">
           <a
             href="https://www.facebook.com/md.munna.362879/"
             target="_blank"
@@ -62,6 +60,14 @@ const Banner = () => {
             className="hover:text-blue-400"
           >
             <Twitter />
+          </a>
+          <a
+            href="https://wa.me/01867418698"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-green-500"
+          >
+            <Phone />
           </a>
         </div>
 
@@ -98,7 +104,6 @@ const Banner = () => {
             className="absolute w-full h-full border-t-4 border-b-4 border-green-500 rounded-full"
           ></motion.div>
           <Image
-        
             src="/my img.jpg"
             alt="MY Portfolio Picture"
             width={400}
