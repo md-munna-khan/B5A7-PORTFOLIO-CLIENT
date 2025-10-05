@@ -21,11 +21,11 @@ export default function Sidebar() {
         </Link>
 
         <Link
-          href="/dashboard/create-blog"
+          href="/dashboard/manage-blog"
           className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 hover:text-black"
         >
           <PlusCircle className="h-4 w-4" />
-          Create Blog
+          Manage Blog
         </Link>
       </nav>
 
@@ -45,3 +45,4 @@ export default function Sidebar() {
     </aside>
   );
 }
+

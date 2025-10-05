@@ -1,16 +1,14 @@
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
-
-import SingleImageUploader from "@/helpers/SingleImageUploader";
 import { toast } from "sonner";
-import { BlogCreate } from "@/actions/create";
+import SingleImageUploader from "@/helpers/SingleImageUploader";
+import { BlogUpdate } from "@/actions/create";
 
-
-export default function CreateBlogForm() {
+export default function UpdateBlogForm({ post, onClose }: any) {
   const [file, setFile] = useState<File | null>(null);
-  const [isFeatured, setIsFeatured] = useState("false");
+  const [isFeatured, setIsFeatured] = useState(post?.isFeatured ? "true" : "false");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,18 +17,16 @@ export default function CreateBlogForm() {
 
     const formData = new FormData(e.currentTarget);
     formData.append("isFeatured", isFeatured);
-
     if (file) formData.append("file", file);
 
     try {
-      await BlogCreate(formData);
-      toast.success("✅ Blog published successfully!");
-   window.dispatchEvent(new Event("close-blog-modal"));
-      setFile(null);
-      setIsFeatured("false");
+      await BlogUpdate(formData, post.id.toString());
+      toast.success("✅ Blog updated successfully!");
+      window.dispatchEvent(new Event("close-update-modal"));
+      onClose?.();
     } catch (error) {
       console.error(error);
-      toast.error("❌ Failed to publish blog");
+      toast.error("❌ Failed to update blog");
     } finally {
       setLoading(false);
     }
@@ -39,10 +35,10 @@ export default function CreateBlogForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-3xl mx-auto mt-10 p-8 bg-white shadow-md rounded-2xl border space-y-6"
+      className="max-w-3xl mx-auto mt-4 p-6 bg-white shadow-md rounded-2xl border space-y-6"
     >
       <h2 className="text-2xl font-semibold text-center text-gray-800">
-        Publish a New Blog
+        Update Blog
       </h2>
 
       {/* Title */}
@@ -54,6 +50,7 @@ export default function CreateBlogForm() {
           type="text"
           id="title"
           name="title"
+          defaultValue={post?.title}
           required
           placeholder="Enter blog title"
           className="w-full rounded-md border px-3 py-2 focus:ring focus:ring-blue-200"
@@ -70,6 +67,7 @@ export default function CreateBlogForm() {
           name="content"
           rows={5}
           required
+          defaultValue={post?.content}
           placeholder="Write your content..."
           className="w-full rounded-md border px-3 py-2 focus:ring focus:ring-blue-200"
         />
@@ -84,6 +82,7 @@ export default function CreateBlogForm() {
           type="text"
           id="tags"
           name="tags"
+          defaultValue={post?.tags?.join(", ")}
           placeholder="Next.js, React, Web Dev"
           className="w-full rounded-md border px-3 py-2 focus:ring focus:ring-blue-200"
         />
@@ -100,7 +99,6 @@ export default function CreateBlogForm() {
               value="true"
               checked={isFeatured === "true"}
               onChange={(e) => setIsFeatured(e.target.value)}
-              className="text-blue-600 focus:ring-blue-500"
             />
             Yes
           </label>
@@ -111,7 +109,6 @@ export default function CreateBlogForm() {
               value="false"
               checked={isFeatured === "false"}
               onChange={(e) => setIsFeatured(e.target.value)}
-              className="text-blue-600 focus:ring-blue-500"
             />
             No
           </label>
@@ -132,7 +129,7 @@ export default function CreateBlogForm() {
           loading ? "opacity-70 cursor-not-allowed" : ""
         }`}
       >
-        {loading ? "Publishing..." : "Publish Blog"}
+        {loading ? "Updating..." : "Update Blog"}
       </button>
     </form>
   );
