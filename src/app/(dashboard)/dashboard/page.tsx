@@ -1,4 +1,4 @@
-import { getUserSession } from "@/helpers/getUserSeeeion";
+import { getUserSession } from "@/helpers/getUserSession";
 
 
 

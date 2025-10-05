@@ -54,8 +54,8 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen  py-30">
-      <div className="space-y-6 w-full max-w-md  p-8 rounded-lg shadow-md">
+    <div className="flex justify-center  items-center min-h-screen  py-30">
+      <div className="space-y-6 w-full border-2 max-w-md  p-8 rounded-lg shadow-md">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+// import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
 import AuthProvider from "@/providers/AuthProvider";
 
@@ -31,18 +31,18 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
       <main className="mx-auto w-10/12 py-30">
-           <ThemeProvider
+           {/* <ThemeProvider
             attribute="class"
-            defaultTheme="Dark"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
-          >
+          > */}
          <AuthProvider>
             <Toaster richColors position="top-center" />
           {children}
         </AuthProvider>
        
-       </ThemeProvider>
+       {/* </ThemeProvider> */}
       </main>
       </body>
     </html>
