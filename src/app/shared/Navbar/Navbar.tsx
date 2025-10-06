@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Logo } from "./logo";
 import { NavMenu } from "./nav-menu";
 import { NavigationSheet } from "./navigation-sheet";
-// import { ModeToggle } from "./ModeToggle";
+import { ModeToggle } from "./ModeToggle";
 import { signOut, useSession } from "next-auth/react";
 import { LogOut } from "lucide-react";
 
@@ -24,10 +24,10 @@ const Navbar = () => {
 
         {/* Actions and Mobile Menu */}
         <div className="flex items-center gap-4 md:gap-6">
-          {/* <ModeToggle/> */}
+          <ModeToggle/>
           {session.status === "authenticated" ? (
     <Button
-      variant="destructive"
+    
       className="justify-start gap-2 cursor-pointer"
       onClick={() => signOut()}
     >

@@ -1,11 +1,12 @@
+import AboutMe from '@/components/ui/About/AboutMe';
 import React from 'react';
 
-const AboutMe = () => {
+const AboutPage = () => {
     return (
         <div>
-            about me 
+            <AboutMe/>
         </div>
     );
 };
 
-export default AboutMe;
+export default AboutPage;

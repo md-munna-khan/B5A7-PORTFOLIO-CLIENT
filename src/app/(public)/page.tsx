@@ -5,6 +5,10 @@ import BlogCard from "@/components/modules/Blog/BlogCard";
 import ProjectCard from "@/components/modules/Project/ProjectCard";
 import Banner from "@/components/ui/Home/Banner";
 import { IBlogPost, IProjectPost } from "@/types";
+import AboutPage from "./about/page";
+import Skills from "@/components/ui/About/Skills";
+
+
 
 export default async function HomePage() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blog`,{
@@ -25,7 +29,12 @@ export default async function HomePage() {
 
   return (
     <div>
+     
       <Banner/>
+        <div>
+        <AboutPage/>
+        <Skills/>
+      </div>
       <h2 className="text-center my-5 text-4xl">Featured Blogs </h2>
       <div className=" grid grid-cols-3 gap-8 max-w-6xl text-4xl my-8 mx-auto">
         {
@@ -42,6 +51,7 @@ export default async function HomePage() {
           ))
         }
       </div>
+    
     </div>
   );
 }

@@ -12,7 +12,7 @@ const Banner = () => {
       <div className="col-span-4 md:col-span-2 w-full lg:space-y-12 space-y-6 mt-20 text-center md:text-left">
         <h1 className="text-2xl md:text-4xl"> HELLO I'M MUNNA</h1>
 
-        <div className="text-green-500">
+        <div className="text-violet-500">
           <TypeAnimation
             className="text-2xl md:text-4xl font-bold"
             sequence={[
@@ -75,16 +75,16 @@ const Banner = () => {
         <div className="inline-flex justify-center md:justify-center gap-4 mt-6">
           <a
             href="#contact"
-            className="items-center border border-green-500 lg:p-3 inline-flex 
-             rounded-full text-sm px-3 py-2 hover:bg-green-500 transition duration-300"
+            className="items-center border border-violet-500 lg:p-3 inline-flex 
+             rounded-full text-sm px-3 py-2 hover:bg-violet-500 transition duration-300"
           >
             CONTACT ME
           </a>
           <a
             href="/web-resume.pdf"
             download="/web-resume.pdf"
-            className="items-center border border-green-500 lg:p-3 inline-flex 
-             rounded-full text-sm px-3 py-2 hover:bg-green-500 transition duration-300"
+            className="items-center border border-violet-500  lg:p-3 inline-flex 
+             rounded-full text-sm px-3 py-2 hover:bg-violet-500 transition duration-300"
           >
             RESUME
           </a>
@@ -93,7 +93,7 @@ const Banner = () => {
 
       {/* Right Section */}
       <div className="md:col-span-2 lg:col-span-2 col-span-4 pt-8">
-        <div className="relative md:w-[600px] md:h-[600px] h-[300px] w-[300px] rounded-full shadow-2xl mx-auto flex justify-center items-center">
+        <div className="relative md:w-[500px] md:h-[500px] h-[300px] w-[300px] rounded-full shadow-2xl mx-auto flex justify-center items-center">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{
@@ -101,7 +101,7 @@ const Banner = () => {
               repeat: Infinity,
               ease: "linear",
             }}
-            className="absolute w-full h-full border-t-4 border-b-4 border-green-500 rounded-full"
+            className="absolute w-full h-full border-t-4 border-b-4 border-violet-500 rounded-full"
           ></motion.div>
           <Image
             src="/my img.jpg"
