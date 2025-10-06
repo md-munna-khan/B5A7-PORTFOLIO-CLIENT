@@ -130,13 +130,17 @@ export function MarqueeDemoVertical() {
 
 const Skills = () => {
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 items-center justify-center gap-6 px-4">
+    <div className="py-8 "> 
+        <h1 className="text-center border-2 mx-auto p-2 w-max ">SKILLS IN MY TOOLKIT</h1>
+    <div className="grid md:grid-cols-2 grid-cols-1 items-center justify-center gap-6 px-4 py-4 ">
+       
       <div className="">
         <MarqueeDemoVertical />
       </div>
       <div>
         <OrbitingCirclesDemo />
       </div>
+    </div>
     </div>
   );
 };

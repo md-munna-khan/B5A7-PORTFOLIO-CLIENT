@@ -7,6 +7,8 @@ import Banner from "@/components/ui/Home/Banner";
 import { IBlogPost, IProjectPost } from "@/types";
 import AboutPage from "./about/page";
 import Skills from "@/components/ui/About/Skills";
+import ContactMe from "@/components/ui/Contact/ContactMe";
+
 
 
 
@@ -51,7 +53,7 @@ export default async function HomePage() {
           ))
         }
       </div>
-    
+    <ContactMe/>
     </div>
   );
 }
