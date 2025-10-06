@@ -25,3 +25,18 @@ export interface IBlogPost{
     updatedAt: string,
     author: IAuthor
 }
+export interface IProjectPost{
+    id: number,
+    title: string,
+    description: string,
+    thumbnail: string,
+    liveLink:string,
+    projectLink:string,
+    isFeatured: true,
+    tags: string [],
+    views: number,
+    authorId: number,
+    createdAt: string,
+    updatedAt: string,
+    author: IAuthor
+}
