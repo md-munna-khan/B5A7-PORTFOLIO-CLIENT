@@ -1,17 +1,72 @@
 
-// import CreateBlogForm from "@/components/modules/Blog/CreateBlogform";
-// import React from "react";
 
-// const ManageBlog = () => {
+// "use client";
+
+// import { useState, useEffect } from "react";
+// import { Button } from "@/components/ui/button";
+// import {
+//   Dialog,
+//   DialogContent,
+//   DialogHeader,
+//   DialogTitle,
+//   DialogTrigger,
+// } from "@/components/ui/dialog";
+// import CreateBlogForm from "@/components/modules/Blog/CreateBlogform";
+// import { PenSquare } from "lucide-react";
+// import BlogDashCard from "@/components/modules/Blog/BlogDashCard";
+
+
+// export default function CreateBlog() {
+//   const [open, setOpen] = useState(false);
+
+//   // ✅ Auto close modal when blog is created successfully
+//   useEffect(() => {
+//     const handleClose = () => setOpen(false);
+//     window.addEventListener("close-blog-modal", handleClose);
+//     return () => window.removeEventListener("close-blog-modal", handleClose);
+//   }, []);
+
 //   return (
-//     <div className="w-full flex justify-center items-center">
-//       <h1>Create a blog</h1>
-//    <CreateBlogForm/>
+
+//     <div className="w-full">
+//     <div className="flex  items-center flex-col border-2 w-full p-4">
+//       {/* Page Title */}
+//       <h1 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100">
+//         ✍️ Create Your Blog
+//       </h1>
+
+//       {/* Create Blog Button */}
+//       <Dialog open={open} onOpenChange={setOpen}>
+//         <DialogTrigger asChild>
+//           <Button
+//             size="lg"
+//             className="flex items-center gap-2 px-6 py-3 rounded-full text-lg font-medium shadow-md"
+//           >
+//             <PenSquare className="w-5 h-5" />
+//             Create Blog
+//           </Button>
+//         </DialogTrigger>
+
+//         {/* Modal Content */}
+//         <DialogContent className="sm:max-w-[600px] w-[90%] max-h-[90vh] overflow-y-auto rounded-2xl">
+//           <DialogHeader>
+//             <DialogTitle className="text-center text-xl font-semibold">
+//               Create a New Blog
+//             </DialogTitle>
+//           </DialogHeader>
+
+//           <CreateBlogForm />
+//         </DialogContent>
+//       </Dialog>
+//     </div>
+
 //     </div>
 //   );
-// };
+// }
 
-// export default ManageBlog;
+
+
+
 
 "use client";
 
@@ -26,11 +81,33 @@ import {
 } from "@/components/ui/dialog";
 import CreateBlogForm from "@/components/modules/Blog/CreateBlogform";
 import { PenSquare } from "lucide-react";
+import BlogDashCard from "@/components/modules/Blog/BlogDashCard";
+import { IBlogPost } from "@/types";
 
 export default function CreateBlog() {
+  const [blogs, setBlogs] = useState<IBlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
 
-  // ✅ Auto close modal when blog is created successfully
+  // ✅ Fetch blogs client-side
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blog`, {
+          cache: "no-store",
+        });
+        const json = await res.json();
+        setBlogs(json.data || []);
+      } catch (error) {
+        console.error("Failed to fetch blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
+
+  // ✅ Auto close modal after blog creation
   useEffect(() => {
     const handleClose = () => setOpen(false);
     window.addEventListener("close-blog-modal", handleClose);
@@ -38,13 +115,13 @@ export default function CreateBlog() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900 px-4">
+    <div className="w-full flex flex-col items-center border-2 p-4">
       {/* Page Title */}
       <h1 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100">
         ✍️ Create Your Blog
       </h1>
 
-      {/* Create Blog Button */}
+      {/* Create Blog Button + Modal */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button
@@ -56,106 +133,34 @@ export default function CreateBlog() {
           </Button>
         </DialogTrigger>
 
-        {/* Modal Content */}
         <DialogContent className="sm:max-w-[600px] w-[90%] max-h-[90vh] overflow-y-auto rounded-2xl">
           <DialogHeader>
             <DialogTitle className="text-center text-xl font-semibold">
               Create a New Blog
             </DialogTitle>
           </DialogHeader>
-
           <CreateBlogForm />
         </DialogContent>
       </Dialog>
+
+      {/* Blog List */}
+      <div className="py-10 px-4 max-w-7xl w-full mx-auto">
+        <h2 className="text-center text-4xl font-semibold mb-6">
+          All Blogs Page
+        </h2>
+
+        {loading ? (
+          <p className="text-center text-gray-500">Loading blogs...</p>
+        ) : blogs.length === 0 ? (
+          <p className="text-center text-gray-500">No blogs found.</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-4">
+            {blogs.map((blog: IBlogPost) => (
+              <BlogDashCard key={blog.id} post={blog} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
-
-
-
-
-
-
-// "use client";
-
-// import Link from "next/link";
-// import { Button } from "@/components/ui/button";
-// import { Home, PlusCircle, LogOut } from "lucide-react";
-// import { signOut, useSession } from "next-auth/react";
-// import { useState, useEffect } from "react";
-
-// // Shadcn Dialog components
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogHeader,
-//   DialogTitle,
-//   DialogTrigger,
-// } from "@/components/ui/dialog";
-// import CreateBlogForm from "@/components/modules/Blog/CreateBlogform";
-
-
-
-// export default function Sidebar() {
-//   const session = useSession();
-//   const [open, setOpen] = useState(false);
-
-//   // ✅ Auto close modal when blog is created
-//   useEffect(() => {
-//     const handleClose = () => setOpen(false);
-//     window.addEventListener("close-blog-modal", handleClose);
-//     return () => window.removeEventListener("close-blog-modal", handleClose);
-//   }, []);
-
-//   return (
-//     <aside className="flex flex-col border-2 rounded-2xl md:w-64 w-full md:h-screen h-auto bg-white dark:bg-gray-900 shadow-md">
-//       {/* Top Navigation */}
-//       <nav className="flex-1 space-y-2 p-4">
-//         {/* 🏠 Home Link */}
-//         <Link
-//           href="/"
-//           className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white transition"
-//         >
-//           <Home className="h-4 w-4" />
-//           Home
-//         </Link>
-
-//         {/* ✍️ Create Blog Button with Modal */}
-//         <Dialog open={open} onOpenChange={setOpen}>
-//           <DialogTrigger asChild>
-//             <button className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white w-full text-left transition">
-//               <PlusCircle className="h-4 w-4" />
-//               Create Blog
-//             </button>
-//           </DialogTrigger>
-
-//           {/* Modal Content */}
-//           <DialogContent className="sm:max-w-[600px] w-[90%] max-h-[90vh] overflow-y-auto rounded-xl">
-//             <DialogHeader>
-//               <DialogTitle className="text-center text-xl font-semibold">
-//                 Create a New Blog
-//               </DialogTitle>
-//             </DialogHeader>
-
-//             {/* ✅ Blog Form Inside Modal */}
-//             <CreateBlogForm />
-//           </DialogContent>
-//         </Dialog>
-//       </nav>
-
-//       {/* Bottom Section */}
-//       <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-//         {session.status === "authenticated" && (
-//           <Button
-//             variant="destructive"
-//             className="w-full justify-start gap-2 cursor-pointer"
-//             onClick={() => signOut()}
-//           >
-//             <LogOut className="h-4 w-4" />
-//             Logout
-//           </Button>
-//         )}
-//       </div>
-//     </aside>
-//   );
-// }
