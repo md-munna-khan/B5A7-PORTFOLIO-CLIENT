@@ -6,13 +6,16 @@ import { useState } from "react";
 import SingleImageUploader from "@/helpers/SingleImageUploader";
 import { toast } from "sonner";
 import { BlogCreate } from "@/actions/create";
+import { useRouter } from "next/navigation";
+
+
 
 
 export default function CreateBlogForm() {
   const [file, setFile] = useState<File | null>(null);
   const [isFeatured, setIsFeatured] = useState("false");
   const [loading, setLoading] = useState(false);
-
+const router = useRouter()
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -25,7 +28,9 @@ export default function CreateBlogForm() {
     try {
       await BlogCreate(formData);
       toast.success("✅ Blog published successfully!");
+       router.push("/blogs")
    window.dispatchEvent(new Event("close-blog-modal"));
+  
       setFile(null);
       setIsFeatured("false");
     } catch (error) {

@@ -33,7 +33,7 @@ export default async function HomePage() {
       </div>
     
       <h2 className="text-center my-5 text-4xl">Featured Projects </h2>
-      <div className=" grid grid-cols-3 gap-8 max-w-6xl text-4xl my-8 mx-auto">
+      <div className=" grid md:grid-cols-3 gap-8 max-w-6xl text-4xl my-8 mx-auto">
         {
           projects.slice(0,3).map((blog:IProjectPost)=>(
               <ProjectCard key={blog?.id} post={blog}   />

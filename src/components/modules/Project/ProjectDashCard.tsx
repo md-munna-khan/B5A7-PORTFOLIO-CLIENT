@@ -21,7 +21,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+
   DialogClose,
 } from "@/components/ui/dialog";
 
@@ -123,7 +123,7 @@ export default function ProjectDashCard({ post }: { post: IProjectPost }) {
 
       {/* Update Modal */}
       <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent className="sm:max-w-[700px] max-w-[95%] rounded-xl p-6">
+        <DialogContent className=" sm:max-w-[700px] max-w-[95%] rounded-xl p-6">
           <DialogHeader>
             <DialogTitle>Edit Project</DialogTitle>
           </DialogHeader>

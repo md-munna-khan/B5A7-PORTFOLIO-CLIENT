@@ -28,7 +28,7 @@ const Banner = () => {
         </div>
 
         {/* Social Media Icons */}
-        <div className="flex justify-center md:justify-start gap-4 text-2xl md:text-4xl p-4 rounded-4xl  border-2 w-max ">
+        <div className="flex justify-center md:justify-start items-center gap-4 text-2xl md:text-4xl p-4 rounded-4xl  border-2 md:w-max ">
           <a
             href="https://www.facebook.com/md.munna.362879/"
             target="_blank"

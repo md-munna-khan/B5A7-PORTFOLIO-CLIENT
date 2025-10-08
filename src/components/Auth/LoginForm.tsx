@@ -61,7 +61,7 @@ export default function LoginForm() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-6 w-full max-w-md"
           >
-            <h2 className="text-3xl font-bold text-center">Login</h2>
+            <h2 className="text-3xl font-bold text-center">ADMIN LOGIN</h2>
 
             {/* Email */}
             <FormField

@@ -5,12 +5,13 @@ import { useState } from "react";
 import { toast } from "sonner";
 import SingleImageUploader from "@/helpers/SingleImageUploader";
 import { BlogUpdate } from "@/actions/create";
+import { useRouter } from "next/navigation";
 
 export default function UpdateBlogForm({ post, onClose }: any) {
   const [file, setFile] = useState<File | null>(null);
   const [isFeatured, setIsFeatured] = useState(post?.isFeatured ? "true" : "false");
   const [loading, setLoading] = useState(false);
-
+const router = useRouter()
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -22,6 +23,7 @@ export default function UpdateBlogForm({ post, onClose }: any) {
     try {
       await BlogUpdate(formData, post.id.toString());
       toast.success("✅ Blog updated successfully!");
+      router.push("/dashboard/manage-blog")
       window.dispatchEvent(new Event("close-update-modal"));
       onClose?.();
     } catch (error) {
@@ -35,9 +37,9 @@ export default function UpdateBlogForm({ post, onClose }: any) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-3xl mx-auto mt-4 p-6 bg-white shadow-md rounded-2xl border space-y-6"
+      className="max-w-3xl mx-auto mt-4 p-6  shadow-md rounded-2xl border space-y-6"
     >
-      <h2 className="text-2xl font-semibold text-center text-gray-800">
+      <h2 className="text-2xl font-semibold text-center ">
         Update Blog
       </h2>
 

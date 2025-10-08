@@ -11,44 +11,84 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Eye, Star, CalendarDays } from "lucide-react";
 
 export default function BlogCard({ post }: { post: IBlogPost }) {
   return (
-    <Card className="hover:shadow-lg transition-shadow duration-300">
-      {/* Thumbnail */}
-      {post.thumbnail ? (
-        <div className="relative h-56 w-full overflow-hidden rounded-t-lg">
-          <Image
-            src={post.thumbnail}
-            alt={post.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        </div>
-      ) : (
-        <div className="h-56 w-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-300 rounded-t-lg">
-          No Image
-        </div>
-      )}
+    <Link href={`/blogs/${post.id}`}>
+      <Card className="bg-card text-card-foreground border border-border rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+        {/* 🖼️ Thumbnail Section */}
+        {post.thumbnail ? (
+          <div className="relative h-56 w-full overflow-hidden">
+            <Image
+              src={post.thumbnail}
+              alt={post.title}
+              fill
+              className="object-cover transition-transform duration-300 hover:scale-105"
+            />
 
-      <CardContent className="p-6 space-y-4">
-        <CardHeader className="p-0">
-          <CardTitle className="text-xl font-bold">{post.title}</CardTitle>
-        </CardHeader>
+            {/* ⭐ Featured Badge */}
+            {post.isFeatured && (
+              <div className="absolute top-2 right-2 bg-primary text-primary-foreground text-xs font-semibold px-2 py-1 rounded-md flex items-center gap-1">
+                <Star size={14} /> Featured
+              </div>
+            )}
 
-        <CardDescription className="text-gray-700 dark:text-gray-300 line-clamp-3">
-          {post.content}
-        </CardDescription>
+            {/* 👁️ Views Badge on Image */}
+            <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs font-medium px-2 py-1 rounded-md flex items-center gap-1">
+              <Eye size={14} />
+              {post.views} views
+            </div>
+          </div>
+        ) : (
+          <div className="h-56 w-full bg-muted flex items-center justify-center text-muted-foreground">
+            No Image Available
+          </div>
+        )}
 
-        <CardFooter className="p-0 mt-2 flex justify-end">
-          <Link href={`/blogs/${post.id}`}>
-            <Button variant="link" size="sm">
-              Read More →
-            </Button>
-          </Link>
-        </CardFooter>
-      </CardContent>
-    </Card>
+        {/* 📝 Blog Content */}
+        <CardContent className="p-6">
+          {/* Title */}
+          <CardHeader className="p-0 mb-3">
+            <CardTitle className="text-xl font-bold text-foreground">
+              {post.title}
+            </CardTitle>
+          </CardHeader>
+
+          {/* Short content */}
+          <CardDescription className="text-muted-foreground line-clamp-3 mb-4">
+            {post.content}
+          </CardDescription>
+
+          {/* Tags */}
+          {post.tags && post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {post.tags.map((tag, i) => (
+                <span
+                  key={i}
+                  className="text-xs font-medium bg-secondary text-secondary-foreground px-2 py-1 rounded-full"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Date */}
+          <div className="flex items-center justify-between text-sm text-muted-foreground mt-4">
+            <div className="flex items-center gap-2">
+              <CalendarDays size={16} />
+              {new Date(post.createdAt).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </div>
+          </div>
+        </CardContent>
+
+        
+      </Card>
+    </Link>
   );
 }

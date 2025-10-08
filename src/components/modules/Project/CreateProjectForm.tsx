@@ -4,11 +4,13 @@ import { useState } from "react";
 import SingleImageUploader from "@/helpers/SingleImageUploader";
 import { toast } from "sonner";
 import { ProjectCreate } from "@/actions/create";
+import { useRouter } from "next/navigation";
 
 export default function CreateProjectForm() {
   const [file, setFile] = useState<File | null>(null);
   const [isFeatured, setIsFeatured] = useState("false");
   const [loading, setLoading] = useState(false);
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,6 +24,7 @@ export default function CreateProjectForm() {
     try {
       await ProjectCreate(formData);
       toast.success("✅ Project published successfully!");
+      router.push("/")
       window.dispatchEvent(new Event("close-blog-modal"));
       setFile(null);
       setIsFeatured("false");
