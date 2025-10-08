@@ -127,16 +127,15 @@ export const BlogDelete = async (blogId: string) => {
   return result;
 };
 
-// project Crud Operation
-// project CRUD Operation
-
+// ✅ Create Project
 export const ProjectCreate = async (data: FormData) => {
   const session = await getUserSession();
   if (!session?.user?.id) throw new Error("Unauthorized user");
 
   const projectInfo = Object.fromEntries(data.entries());
-
   const formData = new FormData();
+
+  // ✅ Basic info
   formData.append("authorId", String(session.user.id));
   formData.append("title", projectInfo.title as string);
   formData.append("description", projectInfo.description as string);
@@ -153,9 +152,11 @@ export const ProjectCreate = async (data: FormData) => {
   // ✅ Featured
   formData.append("isFeatured", projectInfo.isFeatured === "true" ? "true" : "false");
 
-  // ✅ Live & Project Links
+  // ✅ Optional fields
+  if (projectInfo.category) formData.append("category", projectInfo.category as string);
   if (projectInfo.liveLink) formData.append("liveLink", projectInfo.liveLink as string);
-  if (projectInfo.projectLink) formData.append("projectLink", projectInfo.projectLink as string);
+  if (projectInfo.frontendRepoLink) formData.append("frontendRepoLink", projectInfo.frontendRepoLink as string);
+  if (projectInfo.backendRepoLink) formData.append("backendRepoLink", projectInfo.backendRepoLink as string);
 
   // ✅ File Upload
   const file = data.get("file");
@@ -177,7 +178,7 @@ export const ProjectCreate = async (data: FormData) => {
   const result = await res.json();
 
   if (result?.id) {
-    toast.success("Project uploaded successfully!");
+    toast.success("🚀 Project uploaded successfully!");
     revalidateTag("PROJECTS");
     redirect("/");
   }
@@ -185,6 +186,7 @@ export const ProjectCreate = async (data: FormData) => {
   return result;
 };
 
+// ✅ Update Project
 export const ProjectUpdate = async (data: FormData, projectId: string) => {
   const session = await getUserSession();
   if (!session?.user?.id) throw new Error("Unauthorized user");
@@ -204,11 +206,16 @@ export const ProjectUpdate = async (data: FormData, projectId: string) => {
     formData.append("tags", JSON.stringify(tagsArray));
   }
 
-  // ✅ Live & Project Links
+  // ✅ Optional fields
   const liveLink = data.get("liveLink") as string;
-  const projectLink = data.get("projectLink") as string;
+  const frontendRepoLink = data.get("frontendRepoLink") as string;
+  const backendRepoLink = data.get("backendRepoLink") as string;
+  const category = data.get("category") as string;
+
   if (liveLink) formData.append("liveLink", liveLink);
-  if (projectLink) formData.append("projectLink", projectLink);
+  if (frontendRepoLink) formData.append("frontendRepoLink", frontendRepoLink);
+  if (backendRepoLink) formData.append("backendRepoLink", backendRepoLink);
+  if (category) formData.append("category", category);
 
   // ✅ File Upload
   const file = data.get("file");
@@ -229,7 +236,7 @@ export const ProjectUpdate = async (data: FormData, projectId: string) => {
 
   const result = await res.json();
 
-  if (result?.updated?.id) {
+  if (result?.updated?.id || result?.id) {
     toast.success("✅ Project updated successfully!");
     revalidateTag("PROJECTS");
     redirect("/");

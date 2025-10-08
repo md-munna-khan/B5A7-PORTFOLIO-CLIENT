@@ -6,7 +6,7 @@ import ProjectCard from "@/components/modules/Project/ProjectCard";
 import Banner from "@/components/ui/Home/Banner";
 import {  IProjectPost } from "@/types";
 import AboutPage from "./about/page";
-import Skills from "@/components/ui/About/Skills";
+
 import ContactMe from "@/components/ui/Contact/ContactMe";
 
 
@@ -29,7 +29,7 @@ export default async function HomePage() {
       <Banner/>
         <div>
         <AboutPage/>
-        <Skills/>
+       
       </div>
     
       <h2 className="text-center my-5 text-4xl">Featured Projects </h2>

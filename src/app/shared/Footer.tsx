@@ -4,7 +4,7 @@ const Footer = () => {
          
            
            <div className='text-center pb-8'>
-           <p>Serving Dhaka, Badda with dedication and excellence</p>
+           <p>Serving Dhaka, Mirpur with dedication and excellence</p>
            <p>Copyright © 2025 - All right reserved</p>
            </div>
         </div>

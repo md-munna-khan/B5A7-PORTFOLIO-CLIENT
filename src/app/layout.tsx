@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      <main className="max-w-screen-xl mx-auto  py-30">
+      <main className="max-w-screen-xl mx-auto  pt-20">
            <ThemeProvider
             attribute="class"
             defaultTheme="system"

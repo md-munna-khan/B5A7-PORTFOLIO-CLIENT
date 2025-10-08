@@ -51,6 +51,7 @@ const AboutMe = () => {
           }}
         >
           <TerminalDemo />
+          
         </div>
       </div>
     </section>

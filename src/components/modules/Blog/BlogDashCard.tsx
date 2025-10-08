@@ -94,7 +94,7 @@ export default function BlogDashCard({ post }: { post: IBlogPost }) {
                 onClick={() => setShowModal(true)}
                 title="Edit Blog"
               >
-                <Edit className="w-4 h-4 text-yellow-500 dark:text-yellow-300" />
+                <Edit className="w-4 h-4 text-green-500" />
               </Button>
 
               {/* Delete Button */}
@@ -108,7 +108,7 @@ export default function BlogDashCard({ post }: { post: IBlogPost }) {
                 {isPending ? (
                   <span className="text-xs text-gray-400">...</span>
                 ) : (
-                  <Trash2 className="w-4 h-4 text-red-600 dark:text-red-300" />
+                  <Trash2 className="w-4 h-4 text-red-500" />
                 )}
               </Button>
             </div>

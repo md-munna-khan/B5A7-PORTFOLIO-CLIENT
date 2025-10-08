@@ -45,7 +45,7 @@ const router = useRouter()
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-3xl mx-auto mt-10 p-8  shadow-md rounded-2xl border space-y-6"
+      className="max-w-5xl mx-auto mt-10 p-8  shadow-md rounded-2xl border space-y-6"
     >
       <h2 className="text-2xl font-semibold text-center">
         Publish a New Blog

@@ -17,11 +17,11 @@ export const NavMenu = (props: NavigationMenuProps) => {
   const pathname = usePathname(); 
 
   const links = [
-    { href: "/", label: "Home" },
-    { href: "/projects", label: "Projects" },
-    { href: "/blogs", label: "Blogs" },
-    { href: "/about", label: "About" },
-    { href: "/dashboard", label: "Dashboard" },
+    { href: "/", label: "HOME" },
+    { href: "/projects", label: "PROJECTS" },
+    { href: "/blogs", label: "BLOGS" },
+    { href: "/about", label: "ABOUT" },
+    { href: "/dashboard", label: "DASHBOARD" },
   ];
 
   return (

@@ -10,7 +10,7 @@ export default function CreateProjectForm() {
   const [file, setFile] = useState<File | null>(null);
   const [isFeatured, setIsFeatured] = useState("false");
   const [loading, setLoading] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ export default function CreateProjectForm() {
     try {
       await ProjectCreate(formData);
       toast.success("✅ Project published successfully!");
-      router.push("/")
+      router.push("/");
       window.dispatchEvent(new Event("close-blog-modal"));
       setFile(null);
       setIsFeatured("false");
@@ -39,13 +39,13 @@ export default function CreateProjectForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-3xl mx-auto mt-10 p-8  shadow-md rounded-2xl border space-y-6"
+      className="max-w-3xl mx-auto mt-10 p-8 shadow-md rounded-2xl border space-y-6"
     >
-      <h2 className="text-2xl font-semibold text-center ">
+      <h2 className="text-2xl font-semibold text-center">
         Publish a New Project
       </h2>
 
-      {/* Title */}
+      {/* ✅ Title */}
       <div>
         <label htmlFor="title" className="block text-sm font-medium mb-1">
           Title
@@ -60,7 +60,7 @@ export default function CreateProjectForm() {
         />
       </div>
 
-      {/* Description */}
+      {/* ✅ Description */}
       <div>
         <label htmlFor="description" className="block text-sm font-medium mb-1">
           Description
@@ -75,7 +75,21 @@ export default function CreateProjectForm() {
         />
       </div>
 
-      {/* Tags */}
+      {/* ✅ Category */}
+      <div>
+        <label htmlFor="category" className="block text-sm font-medium mb-1">
+          Category
+        </label>
+        <input
+          type="text"
+          id="category"
+          name="category"
+          placeholder="Web App, Mobile App, API, etc."
+          className="w-full rounded-md border px-3 py-2 focus:ring focus:ring-blue-200"
+        />
+      </div>
+
+      {/* ✅ Tags */}
       <div>
         <label htmlFor="tags" className="block text-sm font-medium mb-1">
           Tags (comma separated)
@@ -89,7 +103,7 @@ export default function CreateProjectForm() {
         />
       </div>
 
-      {/* Live Link */}
+      {/* ✅ Live Link */}
       <div>
         <label htmlFor="liveLink" className="block text-sm font-medium mb-1">
           Live Link
@@ -103,21 +117,41 @@ export default function CreateProjectForm() {
         />
       </div>
 
-      {/* Project Repo Link */}
+      {/* ✅ Frontend Repo Link */}
       <div>
-        <label htmlFor="projectLink" className="block text-sm font-medium mb-1">
-          Project Repository Link
+        <label
+          htmlFor="frontendRepoLink"
+          className="block text-sm font-medium mb-1"
+        >
+          Frontend Repository Link
         </label>
         <input
           type="url"
-          id="projectLink"
-          name="projectLink"
-          placeholder="https://github.com/username/project"
+          id="frontendRepoLink"
+          name="frontendRepoLink"
+          placeholder="https://github.com/username/frontend-repo"
           className="w-full rounded-md border px-3 py-2 focus:ring focus:ring-blue-200"
         />
       </div>
 
-      {/* Featured */}
+      {/* ✅ Backend Repo Link */}
+      <div>
+        <label
+          htmlFor="backendRepoLink"
+          className="block text-sm font-medium mb-1"
+        >
+          Backend Repository Link
+        </label>
+        <input
+          type="url"
+          id="backendRepoLink"
+          name="backendRepoLink"
+          placeholder="https://github.com/username/backend-repo"
+          className="w-full rounded-md border px-3 py-2 focus:ring focus:ring-blue-200"
+        />
+      </div>
+
+      {/* ✅ Featured */}
       <div>
         <p className="block text-sm font-medium mb-1">Featured</p>
         <div className="flex gap-6">
@@ -146,13 +180,13 @@ export default function CreateProjectForm() {
         </div>
       </div>
 
-      {/* Thumbnail */}
+      {/* ✅ Thumbnail */}
       <div>
         <label className="block text-sm font-medium mb-1">Thumbnail</label>
         <SingleImageUploader onChange={setFile} />
       </div>
 
-      {/* Submit Button */}
+      {/* ✅ Submit Button */}
       <button
         type="submit"
         disabled={loading}

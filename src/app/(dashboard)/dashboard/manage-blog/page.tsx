@@ -1,71 +1,5 @@
 
 
-// "use client";
-
-// import { useState, useEffect } from "react";
-// import { Button } from "@/components/ui/button";
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogHeader,
-//   DialogTitle,
-//   DialogTrigger,
-// } from "@/components/ui/dialog";
-// import CreateBlogForm from "@/components/modules/Blog/CreateBlogform";
-// import { PenSquare } from "lucide-react";
-// import BlogDashCard from "@/components/modules/Blog/BlogDashCard";
-
-
-// export default function CreateBlog() {
-//   const [open, setOpen] = useState(false);
-
-//   // ✅ Auto close modal when blog is created successfully
-//   useEffect(() => {
-//     const handleClose = () => setOpen(false);
-//     window.addEventListener("close-blog-modal", handleClose);
-//     return () => window.removeEventListener("close-blog-modal", handleClose);
-//   }, []);
-
-//   return (
-
-//     <div className="w-full">
-//     <div className="flex  items-center flex-col border-2 w-full p-4">
-//       {/* Page Title */}
-//       <h1 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100">
-//         ✍️ Create Your Blog
-//       </h1>
-
-//       {/* Create Blog Button */}
-//       <Dialog open={open} onOpenChange={setOpen}>
-//         <DialogTrigger asChild>
-//           <Button
-//             size="lg"
-//             className="flex items-center gap-2 px-6 py-3 rounded-full text-lg font-medium shadow-md"
-//           >
-//             <PenSquare className="w-5 h-5" />
-//             Create Blog
-//           </Button>
-//         </DialogTrigger>
-
-//         {/* Modal Content */}
-//         <DialogContent className="sm:max-w-[600px] w-[90%] max-h-[90vh] overflow-y-auto rounded-2xl">
-//           <DialogHeader>
-//             <DialogTitle className="text-center text-xl font-semibold">
-//               Create a New Blog
-//             </DialogTitle>
-//           </DialogHeader>
-
-//           <CreateBlogForm />
-//         </DialogContent>
-//       </Dialog>
-//     </div>
-
-//     </div>
-//   );
-// }
-
-
-
 
 
 "use client";
@@ -144,9 +78,9 @@ export default function CreateBlog() {
       </Dialog>
 
       {/* Blog List */}
-      <div className="py-10 px-4 max-w-7xl w-full mx-auto">
+      <div className="py-10 px-4 max-w-7xl w-full mx-auto  ">
         <h2 className="text-center text-4xl font-semibold mb-6">
-          All Blogs Page
+          ALL BLOGS PAGE
         </h2>
 
         {loading ? (

@@ -18,9 +18,9 @@ const AllProjectsPage = async () => {
   const {data:projects} = await res.json()
 
   return (
-    <div className="py-30 px-4 max-w-7xl mx-auto">
-      <h2 className="text-center text-4xl">All Projects page </h2>
-<div className="grid grid-cols-3 gap-4 my-4">
+    <div className="py-10 px-4 max-w-7xl mx-auto">
+      <h2 className="text-center  p-2 text-4xl">ALL PROJECTS </h2>
+<div className="grid md:grid-cols-3 gap-4 my-4">
 {
   projects.map((blog:IProjectPost)=>(
 <ProjectCard key={blog.id} post={blog}/>

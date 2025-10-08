@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -12,12 +13,12 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Eye, Star, ExternalLink, Github } from "lucide-react";
+import { Eye, Star } from "lucide-react";
 
 export default function ProjectCard({ post }: { post: IProjectPost }) {
   return (
-    <Card className="bg-card text-card-foreground border border-border rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col">
-      {/* 🖼️ Thumbnail */}
+    <Card className="bg-card text-card-foreground border border-border rounded-xl hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col">
+      {/* Thumbnail */}
       <div className="relative h-56 w-full overflow-hidden">
         {post.thumbnail ? (
           <Image
@@ -32,83 +33,65 @@ export default function ProjectCard({ post }: { post: IProjectPost }) {
           </div>
         )}
 
+        {/* Featured Badge */}
         {post.isFeatured && (
-          <div className="absolute top-2 right-2 bg-primary text-primary-foreground text-xs font-semibold px-2 py-1 rounded-md flex items-center gap-1">
+          <div className="absolute top-3 right-3 bg-primary text-primary-foreground text-xs font-semibold px-2 py-1 rounded-md flex items-center gap-1">
             <Star size={14} /> Featured
           </div>
         )}
+
+        {/* Views */}
+        <div className="absolute bottom-3 left-3 bg-primary/70 text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
+          <Eye size={14} /> {post.views} views
+        </div>
       </div>
- <div className="absolute ">
-    <div className="flex items-center gap-2 text-sm">
-            <Eye size={16} /> {post.views}
-          </div>
- </div>
-      {/* 📝 Content */}
-      <CardContent className="p-2 flex-1 flex flex-col justify-between">
-        {/* Title */}
+
+      {/* Content */}
+      <CardContent className=" flex-1 flex flex-col justify-between">
         <CardHeader className="p-0 mb-2">
-          <CardTitle className="text-xl font-bold text-foreground line-clamp-2">
+          <CardTitle className="text-lg md:text-xl font-semibold line-clamp-2">
             {post.title}
           </CardTitle>
         </CardHeader>
 
-        {/* Description */}
-        <CardDescription className="text-muted-foreground line-clamp-3 mb-4">
+        <CardDescription className="text-muted-foreground line-clamp-3 mb-3">
           {post.description}
         </CardDescription>
 
-        {/* Tags */}
-        {post.tags && post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {post.tags.map((tag, i) => (
-              <span
-                key={i}
-                className="text-xs font-medium bg-secondary text-secondary-foreground px-2 py-1 rounded-full"
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
-        )}
+        {/* Category */}
+        <div className=" text-sm font-medium ">Category : {post.category} </div>
 
-        {/* Views + Links in one line */}
-        <div className="flex items-center justify-between border-2 rounded-2xl p-2   text-sm ">
-          <div className="flex items-center gap-2 text-muted-foreground">
-           
+        {/* Actions */}
+    
+ {/* Actions */}
+<CardFooter className="flex  sm:flex-row justify-center justify-between items-center gap-3 mt-auto  p-2 rounded-b-lg shadow-inner">
+  {/* View Details Button */}
+  <Link href={`/projects/${post.id}`} passHref>
+    <Button
+      size="sm"
+      variant="outline"
+      className="flex items-center gap-2 transition-transform hover:scale-105 hover:shadow-md"
+    >
+      View Details
+    </Button>
+  </Link>
 
-                <Link href={`/projects/${post.id}`}>
-          <Button variant="link" size="sm" className="text-primary">
-            Read More →
-          </Button>
-        </Link>
-          </div>
+  {/* Live Link Button */}
+  {post.liveLink && (
+    <Link href={post.liveLink} target="_blank" rel="noopener noreferrer">
+      <Button
+        size="sm"
+        variant="default"
+        className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:scale-105 hover:shadow-lg transition-transform"
+      >
+        Live Link
+      </Button>
+    </Link>
+  )}
+</CardFooter>
 
-          <div className="flex items-center gap-3">
-            {post.liveLink && (
-              <Link
-                href={post.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-primary hover:underline"
-              >
-                <ExternalLink size={16} /> Live
-              </Link>
-            )}
-            {post.projectLink && (
-              <Link
-                href={post.projectLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-foreground hover:underline"
-              >
-                <Github size={16} /> Code
-              </Link>
-            )}
-          </div>
-        </div>
+  
       </CardContent>
-
-     
     </Card>
   );
 }

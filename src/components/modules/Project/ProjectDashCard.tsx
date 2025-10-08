@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
-import { Edit, Trash2 } from "lucide-react";
+import { Edit, Trash2, ExternalLink, Github, Eye } from "lucide-react";
 
 import {
   Card,
@@ -21,9 +21,9 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-
   DialogClose,
 } from "@/components/ui/dialog";
+
 
 import { IProjectPost } from "@/types";
 import { ProjectDelete } from "@/actions/create";
@@ -50,63 +50,129 @@ export default function ProjectDashCard({ post }: { post: IProjectPost }) {
     startTransition(async () => {
       try {
         await ProjectDelete(post.id.toString());
-        toast.success("🗑️ Blog deleted successfully!");
+        toast.success("🗑️ Project deleted successfully!");
       } catch (error: any) {
         console.error(error);
-        toast.error(error.message || "Failed to delete blog");
+        toast.error(error.message || "Failed to delete project");
       }
     });
   };
 
   return (
     <>
-      <Card className="group hover:shadow-xl transition-shadow duration-300">
-        {post.thumbnail ? (
-          <div className="relative h-56 w-full overflow-hidden rounded-t-xl">
+      <Card className="group hover:shadow-xl transition-shadow duration-300 border border-border rounded-xl overflow-hidden">
+        {/* ✅ Thumbnail with Views Overlay */}
+        <div className="relative h-56 w-full overflow-hidden">
+          {post.thumbnail ? (
             <Image
               src={post.thumbnail}
               alt={post.title}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
-          </div>
-        ) : (
-          <div className="h-56 w-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-300 rounded-t-xl">
-            No Image
-          </div>
-        )}
+          ) : (
+            <div className="h-56 w-full bg-muted flex items-center justify-center text-muted-foreground">
+              No Image Available
+            </div>
+          )}
 
-        <CardHeader className="p-4">
-          <CardTitle className="text-lg font-bold group-hover:text-blue-600 transition-colors">
+          {/* Views Overlay */}
+          <div className="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+            <Eye size={14} /> {post.views}
+          </div>
+        </div>
+
+        {/* ✅ Header */}
+        <CardHeader className=" flex flex-col gap-2">
+          <CardTitle className="text-lg font-bold text-foreground group-hover:text-blue-600 transition-colors">
             {post.title}
           </CardTitle>
+          {post.category && (
+            <p className="text-sm text-muted-foreground font-medium">
+              Category: {post.category}
+            </p>
+          )}
         </CardHeader>
 
-        <CardContent className="p-4">
-          <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
+        {/* ✅ Content */}
+        <CardContent className=" flex flex-col gap-2">
+          <p className="text-muted-foreground mb-2 line-clamp-3">
             {post.description}
           </p>
+
+          {/* Tags */}
+          {post.tags?.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {post.tags.map((tag, i) => (
+                <span
+                  key={i}
+                  className="text-xs font-medium bg-secondary text-secondary-foreground px-2 py-1 rounded-full"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
         </CardContent>
 
-        <CardFooter className="flex justify-between items-center p-4">
-          <Link
-            href={`/blogs/${post.id}`}
-            className="text-blue-600 dark:text-blue-400 font-semibold text-sm hover:underline"
-          >
-            Read More →
-          </Link>
+        {/* ✅ Footer */}
+        <CardFooter className="flex flex-col  justify-between items-center border-t gap-3">
+          {/* Project Links */}
+          <div className="flex  items-center gap-3 flex-wrap">
+            {post.liveLink && (
+              <Link
+                href={post.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-primary hover:underline"
+              >
+                <ExternalLink size={16} /> Live
+              </Link>
+            )}
 
-          <div className="flex gap-2">
+            {post.frontendRepoLink && (
+              <Link
+                href={post.frontendRepoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-foreground hover:underline"
+              >
+                <Github size={16} /> Frontend
+              </Link>
+            )}
+
+            {post.backendRepoLink && (
+              <Link
+                href={post.backendRepoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-foreground hover:underline"
+              >
+                <Github size={16} /> Backend
+              </Link>
+            )}
+          </div>
+
+          {/* Buttons */}
+          <div className="flex gap-2 flex-wrap justify-end">
+            {/* Read More */}
+            <Link href={`/projects/${post.id}`}>
+              <Button variant="default" size="sm" className="flex items-center gap-1">
+                <Eye className="w-4 h-4" /> Read More
+              </Button>
+            </Link>
+
+            {/* Edit */}
             <Button
               variant="outline"
               size="sm"
               onClick={() => setShowModal(true)}
               className="flex items-center gap-1"
             >
-              <Edit className="w-4 h-4" />
-              Edit
+              <Edit className="w-4 h-4" /> 
             </Button>
 
+            {/* Delete */}
             <Button
               variant="destructive"
               size="sm"
@@ -115,19 +181,22 @@ export default function ProjectDashCard({ post }: { post: IProjectPost }) {
               className="flex items-center gap-1"
             >
               <Trash2 className="w-4 h-4" />
-              {isPending ? "..." : "Delete"}
+              {isPending ? "..." : ""}
             </Button>
           </div>
         </CardFooter>
       </Card>
 
-      {/* Update Modal */}
+      {/* ✅ Update Modal */}
       <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent className=" sm:max-w-[700px] max-w-[95%] rounded-xl p-6">
+        <DialogContent className="sm:max-w-[700px] max-w-[95%] rounded-xl p-6">
           <DialogHeader>
             <DialogTitle>Edit Project</DialogTitle>
           </DialogHeader>
-          <UpdateProjectForm project={post} onClose={() => setShowModal(false)} />
+          <UpdateProjectForm
+            project={post}
+            onClose={() => setShowModal(false)}
+          />
           <DialogClose className="absolute top-3 right-3 text-gray-500 hover:text-red-500" />
         </DialogContent>
       </Dialog>

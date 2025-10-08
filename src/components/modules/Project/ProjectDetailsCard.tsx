@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   Card,
   CardContent,
-
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -79,9 +78,16 @@ export default function ProjectDetailsCard({ project }: { project: IProjectPost 
                 <Button variant="default">🌐 Live Preview</Button>
               </Link>
             )}
-            {project. projectLink && (
-              <Link href={project. projectLink} target="_blank">
-                <Button variant="secondary">💻 View Code</Button>
+
+            {project.frontendRepoLink && (
+              <Link href={project.frontendRepoLink} target="_blank">
+                <Button variant="secondary">💻 Frontend Code</Button>
+              </Link>
+            )}
+
+            {project.backendRepoLink && (
+              <Link href={project.backendRepoLink} target="_blank">
+                <Button variant="outline">🧠 Backend Code</Button>
               </Link>
             )}
           </CardFooter>

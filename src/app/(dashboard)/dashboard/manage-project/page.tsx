@@ -79,7 +79,7 @@ export default function CreateProject() {
       {/* Blog List */}
       <div className="py-10 px-4 max-w-7xl w-full mx-auto">
         <h2 className="text-center text-4xl font-semibold mb-6">
-          All Projects Page
+          ALL PROJECTS
         </h2>
 
         {loading ? (

@@ -17,8 +17,8 @@ const AllBlogsPage = async () => {
   const {data:blogs} = await res.json()
 
   return (
-    <div className="py-30 px-4 max-w-7xl mx-auto">
-      <h2 className="text-center text-4xl">All Blogs page </h2>
+    <div className="py-10 px-4 max-w-7xl mx-auto">
+      <h2 className="text-center text-4xl p-2">ALL BLOGS </h2>
 <div className="grid grid-cols-3 gap-4 my-4">
 {
   blogs.map((blog:IBlogPost)=>(
