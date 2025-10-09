@@ -1,23 +1,3 @@
-// import React from 'react';
-
-// import { OrbitingCirclesDemo } from './OrbitingCircles';
-
- 
-    
-// const Skills = () => {
-//     return (
-//         <div className=' grid grid-cols-2'>
-//             <div className='md:grid-cols-1 grid-cols-2'>
-// hi
-//             </div>
-//             <div className='md:grid-cols-1 grid-cols-2'>
-//               <OrbitingCirclesDemo/>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Skills;
 
 
 
@@ -26,6 +6,7 @@ import React from "react";
 import { OrbitingCirclesDemo } from "./OrbitingCircles";
 import { cn } from "@/lib/utils";
 import { Marquee } from "../marquee";
+
 
 
 
@@ -131,7 +112,7 @@ export function MarqueeDemoVertical() {
 const Skills = () => {
   return (
     <div className="py-8 "> 
-        <h1 className="text-center border-2 mx-auto p-2 w-max ">SKILLS IN MY TOOLKIT</h1>
+        <h1  className="text-center   border-2 rounded-2xl mx-auto p-2 w-max ">SKILLS IN MY TOOLKIT</h1>
     <div className="grid md:grid-cols-2 grid-cols-1 items-center justify-center gap-6 px-4 py-4 ">
        
       <div className="">

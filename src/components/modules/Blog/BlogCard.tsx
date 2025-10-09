@@ -9,14 +9,15 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardFooter,
+ 
 } from "@/components/ui/card";
 import { Eye, Star, CalendarDays } from "lucide-react";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 export default function BlogCard({ post }: { post: IBlogPost }) {
   return (
     <Link href={`/blogs/${post.id}`}>
-      <Card className="bg-card text-card-foreground border border-border rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+      <Card className="bg-card relative   text-card-foreground border border-border rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden">
         {/* 🖼️ Thumbnail Section */}
         {post.thumbnail ? (
           <div className="relative h-56 w-full overflow-hidden">
@@ -87,7 +88,7 @@ export default function BlogCard({ post }: { post: IBlogPost }) {
           </div>
         </CardContent>
 
-        
+          <BorderBeam duration={10} size={100} />
       </Card>
     </Link>
   );

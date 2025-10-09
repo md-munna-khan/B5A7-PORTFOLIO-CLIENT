@@ -6,7 +6,7 @@ import emailjs from "emailjs-com";
 import { toast } from "sonner";
 import { Phone, Mail, MapPin } from "lucide-react";
 import {
-  Card,
+
   CardHeader,
   CardTitle,
   CardDescription,
@@ -16,9 +16,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { MagicCard } from "../magic-card";
+import { useTheme } from "next-themes";
 
 // ---------------- EmailMe Component ----------------
 const EmailMe = () => {
+  const { theme } = useTheme();
   const form = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
 
@@ -50,7 +53,10 @@ const EmailMe = () => {
   };
 
   return (
-    <Card className="shadow-xl border-primary/20">
+    <MagicCard  gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"} className="shadow-xl border-primary/20 p-4 rounded-2xl ">
+         
+       
+    
       <CardHeader className="text-center">
         <div className="flex justify-center mb-2">
           <Mail className="w-8 h-8 text-primary" />
@@ -96,7 +102,8 @@ const EmailMe = () => {
       <CardFooter className="text-center text-sm ">
         Looking forward to hearing from you!
       </CardFooter>
-    </Card>
+          </MagicCard>
+   
   );
 };
 

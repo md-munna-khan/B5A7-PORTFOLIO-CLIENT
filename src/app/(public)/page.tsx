@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 
 
@@ -32,7 +32,7 @@ export default async function HomePage() {
        
       </div>
     
-      <h2 className="text-center my-5 text-4xl">Featured Projects </h2>
+       <h1  className="text-center   border-2 rounded-2xl mx-auto p-2 w-max ">FEATURED PROJECTS</h1>
       <div className=" grid md:grid-cols-3 gap-8 max-w-6xl text-4xl my-8 mx-auto">
         {
           projects.slice(0,3).map((blog:IProjectPost)=>(

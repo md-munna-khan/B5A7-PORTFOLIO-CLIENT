@@ -14,10 +14,12 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Eye, Star } from "lucide-react";
+import { ShineBorder } from "@/components/ui/shine-border";
 
 export default function ProjectCard({ post }: { post: IProjectPost }) {
   return (
-    <Card className="bg-card text-card-foreground border border-border rounded-xl hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col">
+    <Card className="bg-card text-card-foreground border border-border rounded-xl hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col relative w-full max-w-[350px">
+       <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
       {/* Thumbnail */}
       <div className="relative h-56 w-full overflow-hidden">
         {post.thumbnail ? (
