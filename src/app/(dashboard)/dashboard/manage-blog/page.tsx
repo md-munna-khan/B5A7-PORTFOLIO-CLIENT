@@ -1,7 +1,4 @@
 
-
-
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -17,6 +14,7 @@ import CreateBlogForm from "@/components/modules/Blog/CreateBlogform";
 import { PenSquare } from "lucide-react";
 import BlogDashCard from "@/components/modules/Blog/BlogDashCard";
 import { IBlogPost } from "@/types";
+import Loading from "@/components/ui/Loading";
 
 export default function CreateBlog() {
   const [blogs, setBlogs] = useState<IBlogPost[]>([]);
@@ -28,7 +26,7 @@ export default function CreateBlog() {
     const fetchBlogs = async () => {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blog`, {
-          cache: "no-store",
+          cache: "no-store",  
         });
         const json = await res.json();
         setBlogs(json.data || []);
@@ -84,7 +82,7 @@ export default function CreateBlog() {
         </h2>
 
         {loading ? (
-          <p className="text-center text-gray-500">Loading blogs...</p>
+          <div className="text-center text-gray-500"><Loading/></div>
         ) : blogs.length === 0 ? (
           <p className="text-center text-gray-500">No blogs found.</p>
         ) : (

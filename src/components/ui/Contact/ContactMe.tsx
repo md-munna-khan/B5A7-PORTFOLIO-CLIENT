@@ -6,7 +6,6 @@ import emailjs from "emailjs-com";
 import { toast } from "sonner";
 import { Phone, Mail, MapPin } from "lucide-react";
 import {
-
   CardHeader,
   CardTitle,
   CardDescription,
@@ -16,8 +15,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { MagicCard } from "../magic-card";
 import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
+
+// ✅ Dynamically import MagicCard (SSR disabled)
+const MagicCard = dynamic(() => import("../magic-card").then(mod => mod.MagicCard), {
+  ssr: false,
+});
 
 // ---------------- EmailMe Component ----------------
 const EmailMe = () => {
@@ -53,10 +57,10 @@ const EmailMe = () => {
   };
 
   return (
-    <MagicCard  gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"} className="shadow-xl border-primary/20 p-4 rounded-2xl ">
-         
-       
-    
+    <MagicCard
+      gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
+      className="shadow-xl border-primary/20 p-4 rounded-2xl"
+    >
       <CardHeader className="text-center">
         <div className="flex justify-center mb-2">
           <Mail className="w-8 h-8 text-primary" />
@@ -64,34 +68,19 @@ const EmailMe = () => {
         <CardTitle className="text-2xl text-primary font-bold">
           Send a Message
         </CardTitle>
-        <CardDescription className=" mt-1">
+        <CardDescription className="mt-1">
           Fill out the form below and I’ll get back to you within 24 hours ✉️
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         <form ref={form} onSubmit={sendEmail} className="space-y-4">
-          <Input
-            type="text"
-            name="user_name"
-            placeholder="Your Name"
-            required
-          />
-          <Input
-            type="email"
-            name="user_email"
-            placeholder="Your Email"
-            required
-          />
-          <Textarea
-            name="message"
-            placeholder="Your Message..."
-            rows={5}
-            required
-          />
+          <Input type="text" name="user_name" placeholder="Your Name" required />
+          <Input type="email" name="user_email" placeholder="Your Email" required />
+          <Textarea name="message" placeholder="Your Message..." rows={5} required />
           <Button
             type="submit"
-            className="w-full bg-primary  hover:bg-primary/90 transition-transform hover:scale-105 duration-300"
+            className="w-full bg-primary hover:bg-primary/90 transition-transform hover:scale-105 duration-300"
             disabled={loading}
           >
             {loading ? "Sending..." : "Send Message"}
@@ -99,22 +88,20 @@ const EmailMe = () => {
         </form>
       </CardContent>
 
-      <CardFooter className="text-center text-sm ">
+      <CardFooter className="text-center text-sm">
         Looking forward to hearing from you!
       </CardFooter>
-          </MagicCard>
-   
+    </MagicCard>
   );
 };
 
 // ---------------- ContactMe Component ----------------
 const ContactMe = () => {
   return (
-    <section className="relative py-16  ">
+    <section className="relative py-16">
       <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-start gap-12">
         {/* Left Column: Map + Info */}
         <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start gap-8">
-          {/* Map Image */}
           <div className="rounded-2xl overflow-hidden shadow-2xl border border-primary/30">
             <Image
               src="/image.png"
@@ -125,17 +112,14 @@ const ContactMe = () => {
             />
           </div>
 
-          {/* Contact Info */}
           <div className="space-y-4 text-center lg:text-left">
-            <h1 className="text-4xl font-bold text-primary mb-2">
-              Get In Touch
-            </h1>
-            <p className=" text-lg leading-relaxed">
+            <h1 className="text-4xl font-bold text-primary mb-2">Get In Touch</h1>
+            <p className="text-lg leading-relaxed">
               I’d love to hear from you! Whether you have a question, project idea,
               or just want to say hello — feel free to reach out.
             </p>
 
-            <div className="space-y-3 ">
+            <div className="space-y-3">
               <div className="flex items-center justify-center lg:justify-start gap-3">
                 <Phone className="w-5 h-5 text-primary" />
                 <span className="text-lg font-medium">+8801867418698</span>

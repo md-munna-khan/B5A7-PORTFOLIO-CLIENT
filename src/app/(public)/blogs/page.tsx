@@ -19,7 +19,7 @@ const AllBlogsPage = async () => {
   return (
     <div className="py-10 px-4 max-w-7xl mx-auto">
       <h2 className="text-center text-4xl p-2">ALL BLOGS </h2>
-<div className="grid grid-cols-3 gap-4 my-4">
+<div className="grid md:grid-cols-3 gap-4 my-4">
 {
   blogs.map((blog:IBlogPost)=>(
 <BlogCard key={blog.id} post={blog}/>

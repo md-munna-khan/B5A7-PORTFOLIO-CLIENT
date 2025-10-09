@@ -1,7 +1,3 @@
-
-
-
-
 import { getUserSession } from "@/helpers/getUserSession";
 import Image from "next/image";
 
@@ -12,7 +8,7 @@ const DashboardHomePage = async () => {
   return (
     <div className="w-full border-2 min-h-screen flex flex-col justify-center items-center">
       <Image
-        src={session?.user?.image || "/my img.jpg"} 
+        src={session?.user?.picture || "/my img.jpg"} 
         alt={session?.user?.name || "User Image"}
         width={300}
         height={300}
@@ -20,6 +16,8 @@ const DashboardHomePage = async () => {
       />
       <h1 className="text-4xl">{session?.user?.name}</h1>
       <h1>{session?.user?.email}</h1>
+
+      {/* <h1>Welcome To My Dashboard!</h1> */}
     </div>
   );
 };

@@ -24,7 +24,7 @@ export default function CreateProjectForm() {
     try {
       await ProjectCreate(formData);
       toast.success("✅ Project published successfully!");
-      router.push("/");
+      router.push("/projects");
       window.dispatchEvent(new Event("close-blog-modal"));
       setFile(null);
       setIsFeatured("false");

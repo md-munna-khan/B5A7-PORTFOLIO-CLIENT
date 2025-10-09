@@ -28,9 +28,9 @@ export default function UpdateProjectForm({ project, onClose }: UpdateProjectFor
     if (file) formData.append("file", file);
 
     try {
-      await ProjectUpdate(formData, String(project.id));
+      await ProjectUpdate(formData, project.id.toString());
       toast.success("✅ Project updated successfully!");
-      router.push("/projects");
+      router.push("/dashboard/manage-project");
       onClose?.();
     } catch (error: any) {
       console.error(error);

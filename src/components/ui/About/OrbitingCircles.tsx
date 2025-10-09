@@ -3,9 +3,13 @@ import { OrbitingCircles } from "../orbiting-circles";
 
 export function OrbitingCirclesDemo() {
   return (
-    <div className="relative flex h-[400px] sm:h-[450px] md:h-[500px] lg:h-[600px] w-full items-center justify-center overflow-hidden">
+    <div className="relative flex h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] w-full items-center justify-center overflow-hidden">
       {/* Outer Orbit */}
-      <OrbitingCircles iconSize={70} radius={200}>
+      <OrbitingCircles
+        iconSize={50}
+        radius={200} // You can make this dynamic if needed
+        className=""
+      >
         <Icons.react />
         <Icons.nodejs />
         <Icons.nextjs />
@@ -15,7 +19,7 @@ export function OrbitingCirclesDemo() {
       </OrbitingCircles>
 
       {/* Inner Orbit */}
-      <OrbitingCircles iconSize={60} radius={150} reverse speed={2}>
+      <OrbitingCircles iconSize={40} radius={120} reverse speed={2}>
         <Icons.typescript />
         <Icons.javascript />
         <Icons.postgresql />

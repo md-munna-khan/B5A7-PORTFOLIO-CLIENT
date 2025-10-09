@@ -3,6 +3,7 @@ import { AlertCircleIcon, ImageUpIcon, XIcon } from "lucide-react";
 
 import { useEffect } from "react";
 import { useFileUpload } from "./use-file-upload";
+import Image from "next/image";
 interface SingleImageUploaderProps {
   onChange: (file: File | null) => void; 
 }
@@ -81,6 +82,11 @@ useEffect(() => {
           />
           {previewUrl ? (
             <div className="absolute inset-0">
+              {/* <Image
+                src={previewUrl}
+                alt={files[0]?.file?.name || "Uploaded image"}
+                className="size-full object-cover"
+              /> */}
               <img
                 src={previewUrl}
                 alt={files[0]?.file?.name || "Uploaded image"}

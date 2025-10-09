@@ -1,7 +1,6 @@
-
 "use server";
 import { getUserSession } from "@/helpers/getUserSession";
-import { revalidateTag } from "next/cache";
+import {  revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { toast } from "sonner";
 // Blog Crud operation
@@ -26,12 +25,10 @@ export const BlogCreate = async (data: FormData) => {
 
   formData.append("isFeatured", blogInfo.isFeatured ? "true" : "false");
 
-
   const file = data.get("file");
   if (file && file instanceof File) {
     formData.append("file", file);
   }
-
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blog`, {
     method: "POST",
@@ -46,15 +43,19 @@ export const BlogCreate = async (data: FormData) => {
   const result = await res.json();
 
   if (result?.id) {
-     
     toast.success("Blog uploaded successfully!");
-       revalidateTag("BLOGS")
+    revalidateTag("BLOGS");
+    // revalidatePath("/")
+    // revalidatePath("/dashboard/manage-projects")
     redirect("/");
   }
 
+  //   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/skill`, {
+  //   next: {tags: ["SKILLS"] }
+  // });
+
   return result;
 };
-
 
 export const BlogUpdate = async (data: FormData, blogId: string) => {
   const session = await getUserSession();
@@ -71,7 +72,10 @@ export const BlogUpdate = async (data: FormData, blogId: string) => {
   // ✅ Tags
   const tagsValue = data.get("tags");
   if (tagsValue) {
-    const tagsArray = tagsValue.toString().split(",").map((t) => t.trim());
+    const tagsArray = tagsValue
+      .toString()
+      .split(",")
+      .map((t) => t.trim());
     formData.append("tags", JSON.stringify(tagsArray));
   }
 
@@ -82,10 +86,13 @@ export const BlogUpdate = async (data: FormData, blogId: string) => {
   }
 
   // ✅ Send request
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blog/${blogId}`, {
-    method: "PATCH",
-    body: formData,
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API}/blog/${blogId}`,
+    {
+      method: "PATCH",
+      body: formData,
+    }
+  );
 
   if (!res.ok) {
     const errorText = await res.text();
@@ -107,9 +114,12 @@ export const BlogDelete = async (blogId: string) => {
   const session = await getUserSession();
   if (!session?.user?.id) throw new Error("Unauthorized user");
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blog/${blogId}`, {
-    method: "DELETE",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API}/blog/${blogId}`,
+    {
+      method: "DELETE",
+    }
+  );
 
   if (!res.ok) {
     const errorText = await res.text();
@@ -150,13 +160,20 @@ export const ProjectCreate = async (data: FormData) => {
   }
 
   // ✅ Featured
-  formData.append("isFeatured", projectInfo.isFeatured === "true" ? "true" : "false");
+  formData.append(
+    "isFeatured",
+    projectInfo.isFeatured === "true" ? "true" : "false"
+  );
 
   // ✅ Optional fields
-  if (projectInfo.category) formData.append("category", projectInfo.category as string);
-  if (projectInfo.liveLink) formData.append("liveLink", projectInfo.liveLink as string);
-  if (projectInfo.frontendRepoLink) formData.append("frontendRepoLink", projectInfo.frontendRepoLink as string);
-  if (projectInfo.backendRepoLink) formData.append("backendRepoLink", projectInfo.backendRepoLink as string);
+  if (projectInfo.category)
+    formData.append("category", projectInfo.category as string);
+  if (projectInfo.liveLink)
+    formData.append("liveLink", projectInfo.liveLink as string);
+  if (projectInfo.frontendRepoLink)
+    formData.append("frontendRepoLink", projectInfo.frontendRepoLink as string);
+  if (projectInfo.backendRepoLink)
+    formData.append("backendRepoLink", projectInfo.backendRepoLink as string);
 
   // ✅ File Upload
   const file = data.get("file");
@@ -197,12 +214,18 @@ export const ProjectUpdate = async (data: FormData, projectId: string) => {
   formData.append("authorId", String(session.user.id));
   formData.append("title", data.get("title") as string);
   formData.append("description", data.get("description") as string);
-  formData.append("isFeatured", data.get("isFeatured") === "true" ? "true" : "false");
+  formData.append(
+    "isFeatured",
+    data.get("isFeatured") === "true" ? "true" : "false"
+  );
 
   // ✅ Tags
   const tagsValue = data.get("tags");
   if (tagsValue) {
-    const tagsArray = tagsValue.toString().split(",").map((t) => t.trim());
+    const tagsArray = tagsValue
+      .toString()
+      .split(",")
+      .map((t) => t.trim());
     formData.append("tags", JSON.stringify(tagsArray));
   }
 
@@ -224,10 +247,13 @@ export const ProjectUpdate = async (data: FormData, projectId: string) => {
   }
 
   // ✅ API Request
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/project/${projectId}`, {
-    method: "PATCH",
-    body: formData,
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API}/project/${projectId}`,
+    {
+      method: "PATCH",
+      body: formData,
+    }
+  );
 
   if (!res.ok) {
     const errorText = await res.text();
@@ -237,9 +263,9 @@ export const ProjectUpdate = async (data: FormData, projectId: string) => {
   const result = await res.json();
 
   if (result?.updated?.id || result?.id) {
-    toast.success("✅ Project updated successfully!");
+    // toast.success("✅ Project updated successfully!");
     revalidateTag("PROJECTS");
-    redirect("/");
+   redirect("/");
   }
 
   return result;
@@ -249,9 +275,12 @@ export const ProjectDelete = async (projectId: string) => {
   const session = await getUserSession();
   if (!session?.user?.id) throw new Error("Unauthorized user");
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/project/${projectId}`, {
-    method: "DELETE",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API}/project/${projectId}`,
+    {
+      method: "DELETE",
+    }
+  );
 
   if (!res.ok) {
     const errorText = await res.text();

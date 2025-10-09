@@ -16,6 +16,7 @@ import { PenSquare } from "lucide-react";
 import { IProjectPost } from "@/types";
 import ProjectDashCard from "@/components/modules/Project/ProjectDashCard";
 import CreateProjectForm from "@/components/modules/Project/CreateProjectForm";
+import Loading from "@/components/ui/Loading";
 
 export default function CreateProject() {
   const [projects, setProjects] = useState<IProjectPost[]>([]);
@@ -79,11 +80,11 @@ export default function CreateProject() {
       {/* Blog List */}
       <div className="py-10 px-4 max-w-7xl w-full mx-auto">
         <h2 className="text-center text-4xl font-semibold mb-6">
-          ALL PROJECTS
+          ALL PROJECTS 
         </h2>
 
         {loading ? (
-          <p className="text-center text-gray-500">Loading Projects...</p>
+          <div className="text-center text-gray-500"><Loading/></div>
         ) : projects.length === 0 ? (
           <p className="text-center text-gray-500">No blogs found.</p>
         ) : (

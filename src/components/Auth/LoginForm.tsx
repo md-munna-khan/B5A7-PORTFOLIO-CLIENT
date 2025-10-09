@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,8 @@ import {
 } from "@/components/ui/form";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
-
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 // type LoginFormValues = {
 //   email: string;
@@ -23,6 +24,8 @@ import { signIn } from "next-auth/react";
 // };
 
 export default function LoginForm() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const form = useForm<FieldValues>({
     defaultValues: {
       email: "",
@@ -30,27 +33,32 @@ export default function LoginForm() {
     },
   });
 
-  const onSubmit =async (values: FieldValues) => {
+  const onSubmit = async (values: FieldValues) => {
     try {
-      // const res = await login(values)
-      // if(res?.id){
-      //   toast.success("User login Successfully");
-       
-      // }
+      setLoading(true);
 
-      signIn("credentials",{
+      toast.loading("Logging in...", { id: "login-toast" });
+
+      const res = await signIn("credentials", {
         ...values,
-        callbackUrl:"/dashboard"
-      })
-       
+        redirect: true,
+        callbackUrl: "/dashboard",
+      });
+
+      if (res?.ok) {
+        toast.success("Login Successful ", { id: "login-toast" });
+        router.replace("/dashboard");
+      }
     } catch (error) {
-      console.log(error)
+      console.error(error);
+      toast.error("Something went wrong. Try again!", { id: "login-toast" });
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleSocialLogin = (provider: "google" | "github") => {
     console.log(`Login with ${provider}`);
-
   };
 
   return (
@@ -101,7 +109,7 @@ export default function LoginForm() {
               )}
             />
 
-            <Button type="submit" className="w-full mt-2">
+            <Button type="submit" disabled={loading} className="w-full mt-2">
               Login
             </Button>
 
@@ -133,9 +141,11 @@ export default function LoginForm() {
           <Button
             variant="outline"
             className="flex items-center justify-center gap-2"
-            onClick={() => signIn("google",{
-              callbackUrl:"/dashboard"
-            })}
+            onClick={() =>
+              signIn("google", {
+                callbackUrl: "/dashboard",
+              })
+            }
           >
             {/* Google */}
             <Image
