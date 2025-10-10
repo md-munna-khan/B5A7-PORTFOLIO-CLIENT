@@ -1,6 +1,6 @@
 "use server";
 import { getUserSession } from "@/helpers/getUserSession";
-import {  revalidateTag } from "next/cache";
+import {  revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { toast } from "sonner";
 // Blog Crud operation
@@ -131,7 +131,9 @@ export const BlogDelete = async (blogId: string) => {
   if (result.success) {
     toast.success("Blog deleted successfully!");
     revalidateTag("BLOGS"); // ISR cache refresh for blogs
-    redirect("/dashboard/manage-blog"); // Redirect owner to blogs dashboard
+    // redirect("/dashboard/manage-blog"); // Redirect owner to blogs dashboard
+    revalidatePath("/dashboard/manage-blog")
+    // revalidatePath("/blogs")
   }
 
   return result;

@@ -20,11 +20,12 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function BlogDashCard({ post }: { post: IBlogPost }) {
   const [isPending, startTransition] = useTransition();
   const [showModal, setShowModal] = useState(false);
-
+const router =useRouter()
   // ✅ Handle Delete
   const handleDelete = async () => {
     const confirmDelete = await Swal.fire({
@@ -44,6 +45,7 @@ export default function BlogDashCard({ post }: { post: IBlogPost }) {
       try {
         await BlogDelete(post.id.toString());
         toast.success("🗑️ Blog deleted successfully!");
+         router.push("/dashboard/manage-blog")
       } catch (error: any) {
         console.error(error);
         toast.error(error.message || "Failed to delete blog");

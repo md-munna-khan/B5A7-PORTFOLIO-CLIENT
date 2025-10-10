@@ -2,15 +2,19 @@
 
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
-import { Facebook, Github, Linkedin, Phone, Twitter } from "lucide-react";
+import { Download, Facebook,  Github, Linkedin,Phone, Twitter } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { HyperText } from "../hyper-text";
+
 
 const Banner = () => {
   return (
     <div className="grid items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 overflow-hidden gap-8 px-4 ">
       {/* Left Section */}
       <div className="col-span-4 md:col-span-2 w-full lg:space-y-12 space-y-6 mt-20 text-center md:text-left">
-      <h1 className="text-2xl md:text-4xl"> HELLO I{"'"}M MUNNA</h1>
+        {/* <h1 className="text-2xl md:text-4xl"> HELLO I{"'"}M MUNNA</h1> */}
+<HyperText>{"HELLO I'M MUNNA"}</HyperText>
 
 
         <div className="text-violet-500">
@@ -19,7 +23,7 @@ const Banner = () => {
             sequence={[
               "A FULL STACK WEB DEVELOPER ",
               1000,
-              "Frontend & Backend Enthusiast",
+              "FRONTEND & BACKEND SPECIALIST",
               1000,
             ]}
             wrapper="span"
@@ -29,7 +33,7 @@ const Banner = () => {
         </div>
 
         {/* Social Media Icons */}
-        <div className="flex justify-center md:justify-start items-center gap-4 text-2xl md:text-4xl p-4 rounded-4xl  border-2 md:w-max ">
+        <div className="flex justify-center md:justify-start items-center gap-4 text-2xl md:text-4xl p-4 rounded-4xl   md:w-max ">
           <a
             href="https://www.facebook.com/md.munna.362879/"
             target="_blank"
@@ -74,21 +78,23 @@ const Banner = () => {
 
         {/* Contact and Resume Button */}
         <div className="inline-flex justify-center md:justify-center gap-4 mt-6">
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="items-center border border-violet-500 lg:p-3 inline-flex 
-             rounded-full text-sm px-3 py-2 hover:bg-violet-500 transition duration-300"
+     rounded-full text-sm px-3 py-2 hover:bg-violet-500 transition duration-300"
           >
             CONTACT ME
-          </a>
-          <a
-            href="/web-resume.pdf"
-            download="/web-resume.pdf"
-            className="items-center border border-violet-500  lg:p-3 inline-flex 
-             rounded-full text-sm px-3 py-2 hover:bg-violet-500 transition duration-300"
-          >
-            RESUME
-          </a>
+          </Link>
+       <a
+  href="/resume.png"
+  download
+  className="items-center border border-violet-500 lg:p-3 inline-flex 
+   rounded-full text-sm px-3 py-2 gap-2 hover:bg-violet-500 transition duration-300"
+>
+  <Download className="w-4 h-4" />
+  RESUME
+</a>
+
         </div>
       </div>
 

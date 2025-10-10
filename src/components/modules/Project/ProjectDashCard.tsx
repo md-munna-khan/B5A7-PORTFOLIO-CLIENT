@@ -28,11 +28,12 @@ import {
 import { IProjectPost } from "@/types";
 import { ProjectDelete } from "@/actions/create";
 import UpdateProjectForm from "./UpdateProjectform";
+import { useRouter } from "next/navigation";
 
 export default function ProjectDashCard({ post }: { post: IProjectPost }) {
   const [isPending, startTransition] = useTransition();
   const [showModal, setShowModal] = useState(false);
-
+const router = useRouter()
   const handleDelete = async () => {
     const confirmDelete = await Swal.fire({
       title: "Are you sure?",
@@ -51,6 +52,7 @@ export default function ProjectDashCard({ post }: { post: IProjectPost }) {
       try {
         await ProjectDelete(post.id.toString());
         toast.success("🗑️ Project deleted successfully!");
+          router.push("/dashboard/manage-project")
       } catch (error: any) {
         console.error(error);
         toast.error(error.message || "Failed to delete project");

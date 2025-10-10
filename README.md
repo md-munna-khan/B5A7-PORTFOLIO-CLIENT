@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🟢 My  Portfolio
 
-## Getting Started
+[![Frontend](https://img.shields.io/badge/Frontend-Next.js-blue?logo=next.js)](https://munna-mia.vercel.app)  
+[![Backend](https://img.shields.io/badge/Backend-Node.js-green?logo=node.js)](https://munna-portfolio-server.vercel.app/)  
 
-First, run the development server:
+
+🌐 **Live Frontend:** [https://munna-mia.vercel.app](https://munna-mia.vercel.app)  
+🌐 **Live Backend:** [https://munna-portfolio-server.vercel.app/](https://munna-portfolio-server.vercel.app/)
+
+---
+
+## 🚀 Project Overview
+
+This is a **personal portfolio website** built using Next.js (frontend) and Node.js + Express (backend).  
+It provides a **private dashboard** for the portfolio owner to manage **blogs**, **projects**, and other content, while offering a **public-facing interface** for visitors.
+
+**Features:**
+
+- Authentication & JWT-based authorization for owner-only dashboard.
+- Full **CRUD** functionality for blogs and projects.
+- Public **About Me** section with personal info and skills.
+- Projects showcase with thumbnails, live links, and repository links.
+- Responsive, modern UI with Tailwind CSS.
+- Notifications and toast messages with `react-hot-toast`.
+- SEO-friendly and fast performance with ISR/SSG.
+
+---
+
+## 💻 Technology Stack
+
+**Frontend:** Next.js, TypeScript, Tailwind CSS, react-hot-toast  
+**Backend:** Node.js, Express.js, Prisma with PostgreSQL, JWT, bcrypt  
+**Tools & Libraries:** React Hook Form, React Quill (rich text editor), Lucide icons ,magic ui,shadcn ,next js
+**Deployment:** Vercel for frontend, Vercel / other server for backend
+
+---
+
+## ⚡ Features Breakdown
+
+### Public Pages
+- Blog listing & individual blog pages (ISR)
+- About Me section (SSG)
+- Project showcase with live preview and repository links
+
+### Private Pages (Owner Only)
+- Dashboard to manage blogs & projects
+- JWT-based authentication
+- Rich text editor for content formatting
+- Error handling & user-friendly feedback via toast notifications
+
+---
+
+## 🛠 Setup Instructions
+
+### Frontend
 
 ```bash
+git clone https://github.com/md-munna-khan/B5A7-PORTFOLIO-CLIENT.git
+cd B5A7-PORTFOLIO-CLIENT
+npm install
+# .env.local
+NEXT_PUBLIC_API_URL=https://munna-portfolio-server.vercel.app
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+#### Backend
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Clone repository
+git clone https://github.com/md-munna-khan/B5A7-PORTFOLIO-SERVER.git
+cd B5A7-PORTFOLIO-SERVER
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Install dependencies
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Create environment variables (.env)
+PORT=5000
+DATABASE_URI=<Your DATABASE_URI>
+JWT_SECRET=<Your Secret Key>
 
-## Learn More
+# Seed admin user (if applicable)
+npm run seed
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Run server
+npm run dev
