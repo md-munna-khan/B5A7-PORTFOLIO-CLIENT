@@ -11,7 +11,7 @@ export default function BlogModal() {
       <DialogTrigger asChild>
         <Button className="mb-4">➕ Create New Blog</Button>
       </DialogTrigger>
-      <DialogContent className="max-w-lg">
+      <DialogContent  className="max-w-lg sm:max-w-xl max-h-[90vh] overflow-y-auto rounded-xl p-6">
         <DialogHeader>
           <DialogTitle>Create a New Blog</DialogTitle>
         </DialogHeader>

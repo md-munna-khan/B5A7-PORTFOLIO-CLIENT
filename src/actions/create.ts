@@ -118,6 +118,7 @@ export const BlogDelete = async (blogId: string) => {
     `${process.env.NEXT_PUBLIC_BASE_API}/blog/${blogId}`,
     {
       method: "DELETE",
+      cache: "no-store",
     }
   );
 

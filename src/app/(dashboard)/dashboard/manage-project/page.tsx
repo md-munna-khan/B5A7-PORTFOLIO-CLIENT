@@ -5,6 +5,7 @@ import { IProjectPost } from "@/types";
 
 async function getProjects(): Promise<IProjectPost[]> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/project`, {
+    cache:"no-store",
     next: { tags: ["PROJECTS"] }
   });
   const data = await res.json();
@@ -17,7 +18,7 @@ export default async function ProjectPage() {
   return (
     <div className="w-full flex flex-col items-center p-4">
       <h1 className="text-3xl font-bold text-center mb-8">
-        ✍️ All Projects Dashboard
+         All Projects Dashboard
       </h1>
 
       {/* Modal Button */}

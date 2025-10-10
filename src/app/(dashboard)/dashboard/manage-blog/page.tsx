@@ -4,8 +4,10 @@ import BlogDashCard from "@/components/modules/Blog/BlogDashCard";
 import BlogModal from "@/components/modules/Blog/BlogModal"; // import modal
 import { IBlogPost } from "@/types";
 
+
 async function getBlogs(): Promise<IBlogPost[]> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blog`, {
+    cache: "no-store",
     next: { tags: ["BLOGS"] }
   });
   const data = await res.json();
@@ -18,7 +20,7 @@ export default async function BlogPage() {
   return (
     <div className="w-full flex flex-col items-center p-4">
       <h1 className="text-3xl font-bold text-center mb-8">
-        ✍️ All Blogs Dashboard
+        All Blogs Dashboard
       </h1>
 
       {/* Modal Button */}

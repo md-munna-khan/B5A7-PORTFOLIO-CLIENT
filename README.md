@@ -64,20 +64,20 @@ npm run dev
 ```
 #### Backend
 
-# Clone repository
+#### Clone repository
 git clone https://github.com/md-munna-khan/B5A7-PORTFOLIO-SERVER.git
 cd B5A7-PORTFOLIO-SERVER
 
-# Install dependencies
+#### Install dependencies
 npm install
 
-# Create environment variables (.env)
+#### Create environment variables (.env)
 PORT=5000
 DATABASE_URI=<Your DATABASE_URI>
 JWT_SECRET=<Your Secret Key>
 
-# Seed admin user (if applicable)
+#### Seed admin user (if applicable)
 npm run seed
 
-# Run server
+#### Run server
 npm run dev

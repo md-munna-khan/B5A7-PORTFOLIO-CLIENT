@@ -1,10 +1,12 @@
+
+
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Eye, Calendar, User, CheckCircle2, Globe, Code } from "lucide-react";
+import { Eye, Calendar, User, CheckCircle2, Globe, Code, Folder } from "lucide-react";
 import { IProjectPost } from "@/types";
 
 export default function ProjectDetailsCard({ project }: { project: IProjectPost }) {
@@ -78,10 +80,34 @@ export default function ProjectDetailsCard({ project }: { project: IProjectPost 
               </div>
             )}
 
+            {/* Category */}
+            {project.category && (
+              <div className="flex items-center gap-2 mt-2">
+                <Folder className="h-4 w-4 text-primary" />
+                <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                  {project.category}
+                </span>
+              </div>
+            )}
+
             {/* Description */}
             <CardContent className="prose prose-lg max-w-none p-0">
               <p className="leading-relaxed">{project.description}</p>
             </CardContent>
+
+            {/* Tags */}
+            {project.tags && project.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-3">
+                {project.tags.map((tag: string, index: number) => (
+                  <span
+                    key={index}
+                    className=" text-sm bg-primary  px-3 py-1 rounded-full"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            )}
 
             {/* Links */}
             <CardFooter className="flex flex-wrap gap-4 pt-4">
@@ -115,3 +141,4 @@ export default function ProjectDetailsCard({ project }: { project: IProjectPost 
     </main>
   );
 }
+

@@ -6,7 +6,7 @@ import { Metadata } from "next";
 
 
 export const metadata:Metadata = {
-  title:"All Blogs Page",
+  title:"All Projects Page",
   description:"Brows All blog Post on web development",
 
 }
