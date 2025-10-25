@@ -21,7 +21,7 @@ export default async function HomePage() {
         <AboutPage />
       </div>
 
-      <h1 className="text-center border-2 rounded-2xl mx-auto p-2 w-max">
+      <h1 className="text-center text-primary border-2 rounded-2xl mx-auto p-2 w-max">
         FEATURED PROJECTS
       </h1>
 
@@ -30,7 +30,7 @@ export default async function HomePage() {
           No Data Found
         </p>
       ) : (
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl text-4xl my-8 mx-auto">
+        <div className="grid md:grid-cols-3  gap-8 max-w-6xl text-4xl my-8 mx-auto px-4 sm:px-6 lg:px-0">
           {projects.slice(0, 3).map((blog: IProjectPost) => (
             <ProjectCard key={blog?.id} post={blog} />
           ))}

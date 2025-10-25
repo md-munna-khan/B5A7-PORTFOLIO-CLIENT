@@ -18,7 +18,7 @@ import { ShineBorder } from "@/components/ui/shine-border";
 
 export default function ProjectCard({ post }: { post: IProjectPost }) {
   return (
-    <Card className="bg-card text-card-foreground border border-border rounded-xl hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col relative w-full max-w-[350px">
+    <Card className="bg-card  text-card-foreground border border-border rounded-xl hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col  relative w-full   ">
        <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
       {/* Thumbnail */}
       <div className="relative h-56 w-full overflow-hidden">
@@ -66,7 +66,7 @@ export default function ProjectCard({ post }: { post: IProjectPost }) {
         {/* Actions */}
     
  {/* Actions */}
-<CardFooter className="flex  sm:flex-row justify-center justify-between items-center gap-3 mt-auto  p-2 rounded-b-lg shadow-inner">
+<CardFooter className="flex  sm:flex-row justify-between items-center gap-3 mt-auto  p-2 rounded-b-lg shadow-inner">
   {/* View Details Button */}
   <Link href={`/projects/${post.id}`} passHref>
     <Button

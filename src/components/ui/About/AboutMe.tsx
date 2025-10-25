@@ -44,7 +44,7 @@ const AboutMe = () => {
 
         {/* Right Terminal Section */}
         <div
-          className="rounded-xl shadow-xl p-2 md:p-8 flex items-center justify-center bg-black/10"
+          className="rounded-xl shadow-xl p-2 md:p-6 flex items-center justify-center "
           style={{
             backgroundColor: "var(--card)",
             color: "var(--card-foreground)",

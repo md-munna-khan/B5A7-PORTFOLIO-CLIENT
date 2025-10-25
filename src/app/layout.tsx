@@ -16,10 +16,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Munna Portfolio",
+  title: "MUNNA DEV",
   description:
     "I'm Munna, a passionate Full-Stack Developer skilled in JavaScript, React.js, Node.js, and MongoDB. Explore my projects, skills, and professional journey through this portfolio.",
-  icons: "/logo.png",
+  icons: {
+    icon: "/logo.png", 
+  },
 };
 
 

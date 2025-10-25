@@ -1,16 +1,16 @@
 "use client";
-import { Button } from "@/components/ui/button";
+
 
 import Link from "next/link";
 import { Logo } from "./logo";
 import { NavMenu } from "./nav-menu";
 import { NavigationSheet } from "./navigation-sheet";
 import { ModeToggle } from "./ModeToggle";
-import { signOut, useSession } from "next-auth/react";
-import { LogOut } from "lucide-react";
+// import { signOut, useSession } from "next-auth/react";
+import { Download, } from "lucide-react";
 
 const Navbar = () => {
-   const session = useSession();
+  //  const session = useSession();
   return (
     <nav className="fixed top-6 inset-x-4 h-16 max-w-screen-xl mx-auto rounded-full bg-background border dark:border-slate-700/70 z-30">
       <div className="flex h-full items-center justify-between px-6 md:px-8">
@@ -25,7 +25,7 @@ const Navbar = () => {
         {/* Actions and Mobile Menu */}
         <div className="flex items-center gap-4 md:gap-6">
           <ModeToggle/>
-          {session.status === "authenticated" ? (
+          {/* {session.status === "authenticated" ? (
     <Button
     
       className="justify-start gap-2 cursor-pointer"
@@ -40,7 +40,17 @@ const Navbar = () => {
         Login
       </Link>
     </Button>
-  )}
+  )} */}
+     <a
+  href="/resume.png"
+  download
+  className="items-center border border-violet-500  inline-flex 
+   rounded-2xl text-sm md:text-base px-5 py-2 gap-2 bg-primary transition duration-300"
+>
+  <Download className="w-4 h-4" />
+  RESUME
+</a>
+
           {/* Mobile Menu */}
           <div className="md:hidden">
             <NavigationSheet />

@@ -112,7 +112,7 @@ export function MarqueeDemoVertical() {
 const Skills = () => {
   return (
   <div className="py-10 bg-background text-foreground">
-  <h1 className="text-center text-xl sm:text-2xl md:text-3xl font-semibold border-2 rounded-2xl mx-auto px-4 py-2 w-max">
+  <h1 className="text-center text-primary  border-2 rounded-2xl mx-auto p-2 w-max">
     SKILLS IN MY TOOLKIT
   </h1>
 

@@ -1,7 +1,5 @@
 
-
 "use client";
-
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -21,7 +19,7 @@ export const NavMenu = (props: NavigationMenuProps) => {
     { href: "/projects", label: "PROJECTS" },
     { href: "/blogs", label: "BLOGS" },
     { href: "/about", label: "ABOUT" },
-    { href: "/dashboard", label: "DASHBOARD" },
+    // { href: "/dashboard", label: "DASHBOARD" },
   ];
 
   return (

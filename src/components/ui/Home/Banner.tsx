@@ -43,7 +43,7 @@ const Banner = () => {
             <Facebook />
           </a>
           <a
-            href="https://github.com/md-munna-khan/Md.munna-mia"
+            href="https://github.com/md-munna-khan"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-800"
