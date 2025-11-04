@@ -42,7 +42,7 @@ const Navbar = () => {
     </Button>
   )} */}
      <a
-  href="/resume.png"
+  href="/Munna-Mia-Resume.pdf"
   download
   className="items-center border border-violet-500  inline-flex 
    rounded-2xl text-sm md:text-base px-5 py-2 gap-2 bg-primary transition duration-300"

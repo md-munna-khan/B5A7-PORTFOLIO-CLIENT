@@ -68,7 +68,7 @@ const EmailMe = () => {
         <CardTitle className="text-2xl text-primary font-bold">
           Send a Message
         </CardTitle>
-        <CardDescription className="mt-1">
+        <CardDescription className="mt-1 p-2">
           Fill out the form below and I’ll get back to you within 24 hours ✉️
         </CardDescription>
       </CardHeader>
@@ -88,7 +88,7 @@ const EmailMe = () => {
         </form>
       </CardContent>
 
-      <CardFooter className="text-center text-sm">
+      <CardFooter className="  text-center items-center text-sm p-2">
         Looking forward to hearing from you!
       </CardFooter>
     </MagicCard>

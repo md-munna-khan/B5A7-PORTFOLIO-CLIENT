@@ -86,7 +86,7 @@ const Banner = () => {
             CONTACT ME
           </Link>
        <a
-  href="/resume.png"
+  href="/Munna-Mia-Resume.pdf"
   download
   className="items-center border border-violet-500 lg:p-3 inline-flex 
    rounded-full text-sm px-3 py-2 gap-2 hover:bg-violet-500 transition duration-300"

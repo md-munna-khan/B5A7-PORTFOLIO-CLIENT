@@ -17,7 +17,7 @@ import { BorderBeam } from "@/components/ui/border-beam";
 export default function BlogCard({ post }: { post: IBlogPost }) {
   return (
     <Link href={`/blogs/${post.id}`}>
-      <Card className="bg-card relative   text-card-foreground border border-border rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+      <Card className="bg-card relative flex flex-col h-full  text-card-foreground border border-border rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden">
         {/* 🖼️ Thumbnail Section */}
         {post.thumbnail ? (
           <div className="relative h-56 w-full overflow-hidden">
@@ -48,7 +48,7 @@ export default function BlogCard({ post }: { post: IBlogPost }) {
         )}
 
         {/* 📝 Blog Content */}
-        <CardContent className="p-6">
+        <CardContent className="p-6 flex-1">
           {/* Title */}
           <CardHeader className="p-0 mb-3">
             <CardTitle className="text-xl font-bold text-foreground">
