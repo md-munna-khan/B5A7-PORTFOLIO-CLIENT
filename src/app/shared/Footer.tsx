@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <div className='py-8 border-2'>
+        <div className='py-8 '>
          
            
            <div className='text-center pb-8'>

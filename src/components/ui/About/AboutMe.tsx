@@ -19,7 +19,7 @@ const AboutMe = () => {
         {/* Left Content */}
         <div className="space-y-6">
           <h1 className="text-4xl font-bold" style={{ color: "var(--primary)" }}>
-            Web Solutions Architect
+            Full Stack Software Developer
           </h1>
           <p className="text-lg leading-relaxed">
             I’m <span style={{ color: "var(--primary)" }}>Md Munna</span>, a passionate
