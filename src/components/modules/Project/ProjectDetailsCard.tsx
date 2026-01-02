@@ -22,7 +22,7 @@ export default function ProjectDetailsCard({ project }: { project: IProjectPost 
     <main className="max-w-7xl mx-auto py-20 px-4">
       {/* Back to Home */}
       <div className="mb-6">
-        <Link href="/">
+        <Link href="/projects">
           <Button variant="ghost" className="flex items-center gap-2">
             ⬅ Back to Home
           </Button>

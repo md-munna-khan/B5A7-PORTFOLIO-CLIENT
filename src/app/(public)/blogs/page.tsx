@@ -12,15 +12,15 @@ export const metadata:Metadata = {
 
 const AllBlogsPage = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blog`,{
-    cache:"no-store"
+    cache:"force-cache"
   });
   const {data:blogs} = await res.json()
 
   return (
     <div className="py-10 px-4 max-w-7xl mx-auto">
       <h2 className="text-center text-4xl p-2">ALL BLOGS </h2>
-<div className="grid md:grid-cols-3 sm:grid-cols-2   gap-4 my-4 items-stretch">
-{
+<div className="grid md:grid-cols-3 sm:grid-cols-2   gap-8 my-4 items-stretch">
+{                  
   blogs.map((blog:IBlogPost)=>(
 <BlogCard key={blog.id} post={blog}/>
 

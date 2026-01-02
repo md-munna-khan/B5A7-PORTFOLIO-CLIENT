@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -18,8 +17,14 @@ import { ShineBorder } from "@/components/ui/shine-border";
 
 export default function ProjectCard({ post }: { post: IProjectPost }) {
   return (
-    <Card className="bg-card  text-card-foreground border border-border rounded-xl hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col  relative w-full   ">
-       <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
+    <Card
+      className="bg-card  text-card-foreground border border-border rounded-xl  hover:scale-[1.02]
+         pt-0
+    
+        transition-all duration-300
+        hover:shadow-primary/20 hover:shadow-xl  overflow-hidden flex flex-col  relative w-full   "
+    >
+      <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
       {/* Thumbnail */}
       <div className="relative h-56 w-full overflow-hidden">
         {post.thumbnail ? (
@@ -64,35 +69,37 @@ export default function ProjectCard({ post }: { post: IProjectPost }) {
         <div className=" text-sm font-medium ">Category : {post.category} </div>
 
         {/* Actions */}
-    
- {/* Actions */}
-<CardFooter className="flex  sm:flex-row justify-between items-center gap-3 mt-auto  p-2 rounded-b-lg shadow-inner">
-  {/* View Details Button */}
-  <Link href={`/projects/${post.id}`} passHref>
-    <Button
-      size="sm"
-      variant="outline"
-      className="flex items-center gap-2 transition-transform hover:scale-105 hover:shadow-md"
-    >
-      View Details
-    </Button>
-  </Link>
 
-  {/* Live Link Button */}
-  {post.liveLink && (
-    <Link href={post.liveLink} target="_blank" rel="noopener noreferrer">
-      <Button
-        size="sm"
-        variant="default"
-        className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:scale-105 hover:shadow-lg transition-transform"
-      >
-        Live Link
-      </Button>
-    </Link>
-  )}
-</CardFooter>
+        {/* Actions */}
+        <CardFooter className="flex  sm:flex-row justify-between items-center gap-3 mt-auto  p-2 rounded-b-lg shadow-inner">
+          {/* View Details Button */}
+          <Link href={`/projects/${post.id}`} passHref>
+            <Button
+              size="sm"
+              variant="outline"
+              className="flex items-center gap-2 transition-transform hover:scale-105 hover:shadow-md"
+            >
+              View Details
+            </Button>
+          </Link>
 
-  
+          {/* Live Link Button */}
+          {post.liveLink && (
+            <Link
+              href={post.liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="sm"
+                variant="default"
+                className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:scale-105 hover:shadow-lg transition-transform"
+              >
+                Live Link
+              </Button>
+            </Link>
+          )}
+        </CardFooter>
       </CardContent>
     </Card>
   );

@@ -1,14 +1,14 @@
-import AboutMe from '@/components/ui/About/AboutMe';
+
 import Skills from '@/components/ui/About/Skills';
 import React from 'react';
 
-const AboutPage = () => {
+const SkillsPage = () => {
     return (
         <div>
-            <AboutMe/>
+        
             <Skills/>
         </div>
     );
 };
 
-export default AboutPage;
+export default SkillsPage;

@@ -15,10 +15,10 @@ export const NavMenu = (props: NavigationMenuProps) => {
   const pathname = usePathname(); 
 
   const links = [
-    { href: "/", label: "HOME" },
+    { href: "/", label: "ABOUT" },
     { href: "/projects", label: "PROJECTS" },
     { href: "/blogs", label: "BLOGS" },
-    { href: "/about", label: "ABOUT" },
+    { href: "/skills", label: "<SKILLS/>" },
     // { href: "/dashboard", label: "DASHBOARD" },
   ];
 

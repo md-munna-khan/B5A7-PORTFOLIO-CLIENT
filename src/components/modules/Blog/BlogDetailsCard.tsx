@@ -17,7 +17,7 @@ export default function BlogDetailsCard({ blog }: BlogDetailsCardProps) {
       <div className="py-20 text-center text-gray-500">
         Blog not found.
         <div className="mt-4">
-          <Link href="/" passHref>
+          <Link href="/blogs" passHref>
             <Button variant="outline" size="sm" className="flex items-center gap-2">
               <ChevronLeft className="h-4 w-4" />
               Back to Home
@@ -32,7 +32,7 @@ export default function BlogDetailsCard({ blog }: BlogDetailsCardProps) {
     <main className="w-full min-h-screen bg-background">
       {/* Back to Home Button */}
       <div className="max-w-7xl mx-auto px-4 py-6">
-        <Link href="/" passHref>
+        <Link href="/blogs" passHref>
           <Button variant="ghost" className="flex items-center gap-2">
             <ChevronLeft className="h-4 w-4" />
             Back to Home

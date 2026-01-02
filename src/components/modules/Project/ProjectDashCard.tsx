@@ -62,7 +62,7 @@ const router = useRouter()
 
   return (
     <>
-      <Card className="group hover:shadow-xl transition-shadow duration-300 border border-border rounded-xl overflow-hidden">
+      <Card className="group hover:shadow-xl transition-shadow duration-300 border border-border  rounded-xl overflow-hidden">
         {/* ✅ Thumbnail with Views Overlay */}
         <div className="relative h-56 w-full overflow-hidden">
           {post.thumbnail ? (

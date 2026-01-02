@@ -13,7 +13,7 @@ const Banner = () => {
     <div className="grid items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 overflow-hidden gap-8 px-4 ">
       {/* Left Section */}
       <div className="col-span-4 md:col-span-2 w-full lg:space-y-12 space-y-6 mt-20 text-center md:text-left">
-        {/* <h1 className="text-2xl md:text-4xl"> HELLO I{"'"}M MUNNA</h1> */}
+     
 <HyperText>{"HELLO I'M MUNNA"}</HyperText>
 
 

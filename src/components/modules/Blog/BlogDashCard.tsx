@@ -55,7 +55,7 @@ const router =useRouter()
 
   return (
     <>
-      <Card className="hover:shadow-lg transition-shadow duration-300">
+      <Card className="hover:shadow-lg pt-0 transition-shadow duration-300">
         {/* Thumbnail */}
         {post.thumbnail ? (
           <div className="relative h-56 w-full overflow-hidden rounded-t-lg">

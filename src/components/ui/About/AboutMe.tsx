@@ -3,7 +3,8 @@
 
 "use client";
 import React from "react";
-import { TerminalDemo } from "./Terminal";
+
+import { IconCloudDemo } from "@/components/globe";
 
 
 const AboutMe = () => {
@@ -50,7 +51,7 @@ const AboutMe = () => {
             color: "var(--card-foreground)",
           }}
         >
-          <TerminalDemo />
+         <IconCloudDemo />
           
         </div>
       </div>
